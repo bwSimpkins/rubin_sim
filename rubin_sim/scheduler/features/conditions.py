@@ -551,8 +551,8 @@ class Conditions(object):
             positions.append(
                 {
                     "name": planet_name,
-                    "RA": np.asscalar(self.planet_positions[planet_name + "_RA"]),
-                    "decl": np.asscalar(self.planet_positions[planet_name + "_dec"]),
+                    "RA": (self.planet_positions[planet_name + "_RA"]).item(),
+                    "decl": (self.planet_positions[planet_name + "_dec"]).item(),
                 }
             )
         positions.append(
@@ -594,7 +594,7 @@ class Conditions(object):
         event_rows = []
         for event in events:
             try:
-                mjd = getattr(self, event)
+                mjd = getattr(self, event).item()
                 time = pd.to_datetime(mjd + 2400000.5, unit="D", origin="julian")
                 event_rows.append({"event": event, "MJD": mjd, "date": time})
             except AttributeError:

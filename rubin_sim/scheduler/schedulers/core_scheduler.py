@@ -396,18 +396,24 @@ class Core_scheduler(object):
             print(self.surveys_df(tier_index).to_markdown(), file=output)
 
         print("", file=output)
-        print(str(self.conditions), file=output)
+        if hasattr(self, 'conditions'):
+            print(str(self.conditions), file=output)
+        else:
+            print("No conditions set", file=output)
 
         print("", file=output)
         print("## Queue", file=output)
-        print(
-            pd.concat(pd.DataFrame(q) for q in self.queue)[
-                ["ID", "flush_by_mjd", "RA", "dec", "filter", "exptime", "note"]
-            ]
-            .set_index("ID")
-            .to_markdown(),
-            file=output,
-        )
+        if len(self.queue) > 0:
+            print(
+                pd.concat(pd.DataFrame(q) for q in self.queue)[
+                    ["ID", "flush_by_mjd", "RA", "dec", "filter", "exptime", "note"]
+                ]
+                .set_index("ID")
+                .to_markdown(),
+                file=output,
+            )
+        else:
+            print("Queue is empty", file=output)
 
         result = output.getvalue()
         return result
@@ -435,7 +441,10 @@ class Core_scheduler(object):
         surveys = []
         survey_list = self.survey_lists[tier]
         for survey_list_elem, survey in enumerate(survey_list):
-            reward = np.max(survey.reward) if tier <= self.survey_index[0] else None
+            if self.survey_index[0] is not None:
+                reward = np.max(survey.reward) if tier <= self.survey_index[0] else None
+            else:
+                reward = None
             chosen = (tier == self.survey_index[0]) and (
                 survey_list_elem == self.survey_index[1]
             )
