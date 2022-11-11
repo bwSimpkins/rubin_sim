@@ -398,7 +398,10 @@ class CoreScheduler(object):
             print(self.surveys_df(tier_index).to_markdown(), file=output)
 
         print("", file=output)
-        print(str(self.conditions), file=output)
+        if hasattr(self, 'conditions'):
+            print(str(self.conditions), file=output)
+        else:
+            print("No conditions set", file=output)
 
         print("", file=output)
         print("## Queue", file=output)
@@ -412,7 +415,7 @@ class CoreScheduler(object):
                 file=output,
             )
         else:
-            print("Queue is empty.")
+            print("Queue is empty", file=output)
 
         result = output.getvalue()
         return result

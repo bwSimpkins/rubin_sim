@@ -601,8 +601,8 @@ class Conditions(object):
         event_rows = []
         for event in events:
             try:
-                mjd = getattr(self, event)
-                time = pd.to_datetime(float(mjd) + 2400000.5, unit="D", origin="julian")
+                mjd = getattr(self, event).item()
+                time = pd.to_datetime(mjd + 2400000.5, unit="D", origin="julian")
                 event_rows.append({"event": event, "MJD": mjd, "date": time})
             except AttributeError:
                 pass
