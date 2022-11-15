@@ -396,7 +396,7 @@ class Core_scheduler(object):
             print(self.surveys_df(tier_index).to_markdown(), file=output)
 
         print("", file=output)
-        if hasattr(self, 'conditions'):
+        if hasattr(self, "conditions"):
             print(str(self.conditions), file=output)
         else:
             print("No conditions set", file=output)
@@ -441,10 +441,19 @@ class Core_scheduler(object):
         surveys = []
         survey_list = self.survey_lists[tier]
         for survey_list_elem, survey in enumerate(survey_list):
-            if self.survey_index[0] is not None:
-                reward = np.max(survey.reward) if tier <= self.survey_index[0] else None
-            else:
+            if (self.survey_index[0] is None) or (tier > self.survey_index[0]):
+                # This survey reward was not been evaluated
                 reward = None
+            elif survey.reward is None:
+                reward = None
+            elif np.isscalar(survey.reward):
+                reward = survey.reward
+            elif np.count_nonzero(survey.reward > -np.inf) == 0:
+                # The entire survey is masked
+                reward = -np.inf
+            else:
+                reward = np.nanmax(survey.reward)
+
             chosen = (tier == self.survey_index[0]) and (
                 survey_list_elem == self.survey_index[1]
             )
