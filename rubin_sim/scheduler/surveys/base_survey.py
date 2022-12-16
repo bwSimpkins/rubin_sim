@@ -4,10 +4,8 @@ import healpy as hp
 import numpy as np
 import pandas as pd
 
-from rubin_sim.scheduler.detailers import Zero_rot_detailer
 from rubin_sim.scheduler.thomson import thetaphi2xyz, xyz2thetaphi
 from rubin_sim.scheduler.utils import (
-    comcamTessellate,
     empty_observation,
     set_default_nside,
     HpInLsstFov,
