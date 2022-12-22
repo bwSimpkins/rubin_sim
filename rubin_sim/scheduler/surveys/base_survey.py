@@ -1,8 +1,9 @@
+from copy import copy, deepcopy
+
+import healpy as hp
 import numpy as np
-from copy import deepcopy, copy
 import pandas as pd
 
-from rubin_sim.scheduler.detailers import Zero_rot_detailer
 from rubin_sim.scheduler.thomson import thetaphi2xyz, xyz2thetaphi
 from rubin_sim.scheduler.utils import (
     comcamTessellate,
@@ -187,6 +188,10 @@ class BaseSurvey(object):
         """
 
         feasibility = []
+        max_rewards = []
+        basis_areas = []
+        accum_rewards = []
+        accum_areas = []
         max_rewards = []
         basis_areas = []
         accum_rewards = []

@@ -558,8 +558,8 @@ class Conditions(object):
             positions.append(
                 {
                     "name": planet_name,
-                    "RA": float(self.planet_positions[planet_name + "_RA"]),
-                    "decl": float(self.planet_positions[planet_name + "_dec"]),
+                    "RA": (self.planet_positions[planet_name + "_RA"]).item(),
+                    "decl": (self.planet_positions[planet_name + "_dec"]).item(),
                 }
             )
         positions.append(
