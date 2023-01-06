@@ -6,6 +6,7 @@ import pandas as pd
 
 from rubin_sim.scheduler.thomson import thetaphi2xyz, xyz2thetaphi
 from rubin_sim.scheduler.utils import (
+    comcamTessellate,
     empty_observation,
     set_default_nside,
     HpInLsstFov,
@@ -187,6 +188,10 @@ class BaseSurvey(object):
         """
 
         feasibility = []
+        max_rewards = []
+        basis_areas = []
+        accum_rewards = []
+        accum_areas = []
         max_rewards = []
         basis_areas = []
         accum_rewards = []
