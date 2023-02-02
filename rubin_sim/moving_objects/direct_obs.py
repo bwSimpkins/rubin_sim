@@ -199,8 +199,9 @@ class DirectObs(BaseObs):
                     + datetime.datetime.now().strftime("Exact start: %Y-%m-%d %H:%M:%S")
                     + " nExactTimes: %s" % len(times)
                 )
+                # XXX--forcing 2-body propigation here to see how results change
                 ephs = self.generate_ephemerides(
-                    sso, times, eph_mode=self.eph_mode, eph_type=self.eph_type
+                    sso, times, eph_mode=self.eph_mode, eph_type="2body"
                 )[0]
                 logging.debug(
                     ("%d/%d   id=%s : " % (i, len(orbits), objid))
