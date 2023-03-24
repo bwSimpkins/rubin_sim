@@ -458,11 +458,11 @@ class KinemModel(object):
 
         # Taking minimum of abs, so only possible azimuths slews should show up.
         # And delta_az is signed properly.
-        stacked_az = np.vstack([delta_az_short, delta_az_long])
-        indx = np.argmin(np.abs(stacked_az), axis=0)
-        delta_aztel = np.take_along_axis(
-            stacked_az, np.expand_dims(indx, axis=0), axis=0
-        ).squeeze(axis=0)
+        delta_aztel = np.where(
+            np.abs(delta_az_short) <= np.abs(delta_az_long),
+            delta_az_short,
+            delta_az_long,
+        )
 
         # Calculate how long the telescope will take to slew to this position.
         tel_alt_slew_time = self._uam_slew_time(
