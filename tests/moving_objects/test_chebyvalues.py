@@ -192,9 +192,6 @@ class TestJPLValues(unittest.TestCase):
         self.cheby_fits.calc_segment_length()
         self.cheby_fits.calc_segments()
 
-        #self.cheby_fits.write(
-        #    self.coeff_file, self.resid_file, self.failed_file, append=False
-        #)
         self.coeff_keys = [
             "obj_id",
             "t_start",
@@ -206,7 +203,6 @@ class TestJPLValues(unittest.TestCase):
             "elongation",
         ]
         self.cheby_values = ChebyValues()
-        #self.cheby_values.read_coefficients(self.coeff_file)
         self.cheby_values.set_coefficients(self.cheby_fits)
 
     def tearDown(self):
@@ -244,9 +240,6 @@ class TestJPLValues(unittest.TestCase):
         # Much of the time we're closer than 1mas, but there are a few which hit higher values.
         # This is consistent with the errors/values reported by oorb directly in testEphemerides.
 
-        #if not np.isfinite(np.nanmax(delta_ra)):
-        #    warnings.warn("Looks like we have NaNs, skipping TestJPLValues unit tests.")
-        #else:
         #    # XXX--units?
         print("max JPL errors", delta_ra.max(), delta_dec.max())
         print("std of JPL errors", np.std(delta_ra), np.std(delta_dec))
