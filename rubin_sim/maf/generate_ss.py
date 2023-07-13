@@ -4,18 +4,16 @@ import os
 from rubin_sim.data import get_data_dir
 import rubin_sim.maf.db as db
 import argparse
-from rubin_sim.utils import survey_start_mjd
+import pandas as pd
+import sqlite3
+import numpy as np
 
 
 def generate_ss_commands(
     dbfiles=None,
     pops=None,
-    start_mjd=None,
     split=False,
 ):
-    if start_mjd is None:
-        start_mjd = survey_start_mjd()
-
     if dbfiles is None:
         dbfiles = glob.glob("*.db")
         dbfiles.sort()
@@ -79,6 +77,15 @@ def generate_ss_commands(
 
     runs = [os.path.split(file)[-1].replace(".db", "") for file in dbfiles]
     runs = [run for run in runs if "tracking" not in run]
+
+    # Find mjd_start for each run:
+    mjd_starts = {}
+    for filename in dbfiles:
+        con = sqlite3.connect(filename)
+        value = pd.read_sql("select min(observationStartMJD) from observations;", con)
+        con.close()
+        mjd_starts[filename] = np.floor(value.values.min())
+
     if not split:
         output_file = open("ss_script.sh", "w")
         for run, filename in zip(runs, dbfiles):
@@ -103,12 +110,12 @@ def generate_ss_commands(
                     f" --simulation_db {filename} --orbit_file {orbit_files[pop]}"
                     f" --out_dir {run}_ss"
                     f" --objtype {objtype}"
-                    f" --start_time {start_mjd}"
+                    f" --start_time {mjd_starts[filename]}"
                 )
                 s3 = (
                     f"run_moving_fractions --work_dir {run}_ss"
                     f" --metadata {objtype}"
-                    f" --start_time {start_mjd}"
+                    f" --start_time {mjd_starts[filename]}"
                 )
                 print(s1 + " ; " + s2 + " ; " + s3, file=output_file)
     else:
@@ -152,7 +159,7 @@ def generate_ss_commands(
                                 f" --out_dir {out_dir}/{split}"
                                 f" --run_name {run}"
                                 f" --objtype {objtype}"
-                                f" --start_time {start_mjd}"
+                                f" --start_time {mjd_starts[filename]}"
                             )
                             print(s1 + " ; " + s2, file=wi)
                     s3 = (
@@ -163,7 +170,7 @@ def generate_ss_commands(
                     s4 = (
                         f"run_moving_fractions --work_dir {out_dir}/sso"
                         f" --metadata {objtype}"
-                        f" --start_time {start_mjd}"
+                        f" --start_time {mjd_starts[filename]}"
                     )
                     print(
                         f"cat {outfile_split} | parallel -j 10 ; {s3}  ; {s4}",
@@ -182,9 +189,6 @@ def generate_ss():
     parser.set_defaults(vatiras=False)
     parser.add_argument(
         "--pop", type=str, default=None, help="identify one population to run"
-    )
-    parser.add_argument(
-        "--start_mjd", type=float, default=None, help="start of the sim"
     )
     parser.add_argument(
         "--split",
@@ -213,7 +217,6 @@ def generate_ss():
         db_files = args.db
 
     generate_ss_commands(
-        start_mjd=args.start_mjd,
         split=args.split,
         dbfiles=db_files,
         pops=args.pop,
