@@ -2,6 +2,7 @@ import logging
 import numpy as np
 import datetime
 from rubin_sim.utils import angular_separation
+import warnings
 from .base_obs import BaseObs
 
 __all__ = ["DirectObs"]
@@ -165,15 +166,14 @@ class DirectObs(BaseObs):
             if (obs_data[self.obs_time_col].min() < object_mjds.min()) | (
                 obs_data[self.obs_time_col].max() > object_mjds.max()
             ):
-                raise ValueError(
-                    "Pre-computed position times do not cover MJD range of %i-%i."
+                warnings.warn(
+                    "Pre-computed position times do not cover MJD range of %i-%i, reverting to object_mjds=None)."
                     % (
-                        obs_data[self.obs_time_col]
-                        .min()
-                        .obs_data[self.obs_time_col]
-                        .max()
+                        obs_data[self.obs_time_col].min(),
+                        obs_data[self.obs_time_col].max(),
                     )
                 )
+                object_mjds = None
             # calculate angular motion for each object at each timestep
             # how much does it move going to time step forward
             move1 = angular_separation(
