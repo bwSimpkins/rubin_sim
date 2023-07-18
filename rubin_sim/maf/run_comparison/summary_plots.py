@@ -36,7 +36,7 @@ def normalize_metric_summaries(
 
     Parameters
     ----------
-    baseline_run : `str` or `list` of `str
+    baseline_run : `str` or `list` of `str`
         The name of the run that defines a normalized value of 1.
         If a list is provided, the median value of each metric across that list is used as the reference.
     summary : `pd.DataFrame`
