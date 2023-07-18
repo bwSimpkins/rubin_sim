@@ -62,11 +62,11 @@ def get_family_runs(run_source=None):
     run_source : `None` or `str`
         File name or URL for the json file from which to load the metadata.
         If it is set to `None`, the data is loaded from the URL specified
-        by the `archive.RUNS_SOURCE` constant.
+        by the ``archive.RUNS_SOURCE`` constant.
 
     Returns
     -------
-    families : `pandas.DataFrame`
+    families : `pd.DataFrame`
         ``families``
             The index is the run family. (`str`)
         ``run``
@@ -111,7 +111,7 @@ def get_family_runs(run_source=None):
 
 
 def get_runs(run_source=None):
-    """Load metadata on opsim runs into a `pandas.DataFrame`.
+    """Load metadata on opsim runs into a `pd.DataFrame`.
 
     Parameters
     ----------
@@ -122,7 +122,7 @@ def get_runs(run_source=None):
 
     Returns
     -------
-    runs : `pandas.DataFrame`
+    runs : `pd.DataFrame`
         ``run``
             The index of the DataFrame is the project-standard name for the run
             (`str`)
@@ -168,10 +168,10 @@ def download_runs(runs, dest_dir=None, runs_source=None, clobber=False):
 
     Parameters
     ----------
-    runs : `pandas.DataFrame` or iterable [`str`]
-        If a `pandas.DataFrame` is provided, the `OpsimRun` column will be used
+    runs : `pd.DataFrame` or iterable [`str`]
+        If a `pd.DataFrame` is provided, the `OpsimRun` column will be used
         to get run names, and data will be read from the url specified in the
-        `url` column.
+        ``url`` column.
         If a collection of `str` is provided, these will be interpreted as
         run names supplied by data originating in the run metadata provided
         by the ``runs_source`` parameter.
@@ -180,8 +180,8 @@ def download_runs(runs, dest_dir=None, runs_source=None, clobber=False):
     runs_source : `str`
         File name or URL for the json file from which to load the metadata.
         If it is set to `None`, the data is loaded from the URL specified
-        by the `archive.RUNS_SOURCE` constant. This parameter is ignored
-        if the ``runs`` parameter is set to a `pandas.DataFrame`.
+        by the ``archive.RUNS_SOURCE`` constant. This parameter is ignored
+        if the ``runs`` parameter is set to a `pd.DataFrame`.
     clobber : `bool`
         If ``False``, runs that would clobber an existing file will be skipped.
         If ``True``, existing files will be overwritten.
@@ -189,7 +189,7 @@ def download_runs(runs, dest_dir=None, runs_source=None, clobber=False):
 
     Returns
     -------
-    runs : `pandas.DataFrame`
+    runs : `pd.DataFrame`
         Metadata on runs downloaded (in the same structure as the return of
         ``archive.get_runs``).
     """
@@ -235,7 +235,7 @@ def get_metric_sets(metric_set_source=METRIC_SET_SOURCE):
 
     Returns
     -------
-    metric_sets : `pandas.DataFrame`
+    metric_sets : `pd.DataFrame`
         ``metric_set``
             The 1st level of the index is the name of a set of metrics (`str`).
         ``metric``
@@ -265,13 +265,13 @@ def get_metric_sets(metric_set_source=METRIC_SET_SOURCE):
 
 
 def write_metric_sets(metric_set_file, metric_sets):
-    """Write an updated metric_set dataframe to disk
+    """Write an updated metric_set dataframe to disk.
 
     Parameters
     ----------
     metric_set_file : `str`
         Output file name.
-    metric_sets : `pandas.DataFrame`
+    metric_sets : `pd.DataFrame`
         Metric_set dataframe, as defined in get_metric_sets
     """
     tmp = metric_sets.reset_index("metric set")
@@ -303,20 +303,20 @@ def get_metric_summaries(
     metrics : iterable [`str`]
         Metrics to include in the summary (in addition to any that are
         part of sets included in ``metric_sets``).
-    summary_source : `str` or `pandas.DataFrame`
+    summary_source : `str` or `pd.DataFrame`
         File name or URL for the file from which to load the data.
         If it is set to `None`, the data is loaded from the URL specified
         by the `archive.METRIC_SET_SOURCE` constant.
-        If the supplied value is a `pandas.DataFrame`, it the table
+        If the supplied value is a `pd.DataFrame`, it the table
         returned will be a subset of this supplied table.
-    run_source : `pandas.DataFrame` or `str`
-        Either a `pandas.DataFrame` of runs metadata (as returned by
+    run_source : `pd.DataFrame` or `str`
+        Either a `pd.DataFrame` of runs metadata (as returned by
         `archive.get_runs`), or a file name or URL for the json file
         from which to load the run metadata.
         If it is set to `None`, the data is loaded from the URL specified
         by the `archive.RUNS_SOURCE` constant.
-    metric_set_source : `pandas.DataFrame` or `str`
-        Either a `pandas.DataFrame` of metric set specifications
+    metric_set_source : `pd.DataFrame` or `str`
+        Either a `pd.DataFrame` of metric set specifications
         (as returned by `archive.get_metric_sets`) or a
         file name or URL for the json file from which to load the data.
         If it is set to `None`, the data is loaded from the URL specified
@@ -330,18 +330,17 @@ def get_metric_summaries(
 
     Returns
     -------
-    summaries : `pandas.DataFrame`
-        Metric summary values are returned in a `pandas.DataFrame`, with
+    summaries : `pd.DataFrame`
+        Metric summary values are returned in a `pd.DataFrame`, with
         each column providing the metrics for one run, and each row the
         values for one metric. The metric names constitute the index, and
         the column names are the canonical run names.
 
-    Note
-    ----
+    Notes
+    -----
     The entire summary statistic values for all of the runs and metrics can
     be downloaded from the default sources first, by simply calling
-    .. code-block:: python
-        summary = get_metric_summaries()
+    `summary = get_metric_summaries()`.
 
     Then, you can use `get_metric_summaries` to get a subset without
     redownloading the whole set by passing `summary_source=summary`. If you are
@@ -404,18 +403,16 @@ def get_family_descriptions(family_source=None):
 
     Parameters
     ----------
-    family_source : `str
+    family_source : `str` or `pd.DataFrame`
         File name or URL for the json file from which to load the
         family descriptinos.  If it is set to `None`, the data is
         loaded from the URL specified by the
-        `archive.FAMILY_SOURCE` constant.
-
+        ``archive.FAMILY_SOURCE`` constant.
 
     Returns
     -------
-    families : `pandas.DataFrame`
+    families : `pd.DataFrame`
         Family descriptions, with comments.
-
     """
     family_source = FAMILY_SOURCE if family_source is None else family_source
     if isinstance(family_source, pd.DataFrame):
@@ -440,15 +437,15 @@ def describe_families(
 
     Parameters
     ----------
-    families : `pandas.DataFrame`
+    families : `pd.DataFrame`
         Data family descriptions as returned by get_family_descriptions.
-    summary : `pandas.DataFrame`
+    summary : `pd.DataFrame`
         Summary metrics for each run, as returned by get_metric_summaries.
-    table_metric_set : `pandas.DataFrame`
+    table_metric_set : `pd.DataFrame`
         Metadata on metrics to be included in the table, with columns and
         index as returned by get_metric_sets. None if no metrics should be
         included in the table.
-    plot_metric_set : `pandas.DataFrame`
+    plot_metric_set : `pd.DataFrame`
         Metadata on metrics to be included in the plot, with columns and
         index as returned by get_metric_sets. None if no plot should be
         made.
@@ -557,7 +554,7 @@ def create_metric_set_df(
 
     Returns
     -------
-    metric_set : `pandas.DataFrame`
+    metric_set : `pd.DataFrame`
         A table of metrics and normalization and plotting flags defining the
         content of a metric set.
     """

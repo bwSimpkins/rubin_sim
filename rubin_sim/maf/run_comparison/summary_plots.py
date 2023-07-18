@@ -32,22 +32,23 @@ def normalize_metric_summaries(
     summary,
     metric_sets=None,
 ):
-    """Create a normalized `pandas.DataFrame` of metric summary values.
+    """Create a normalized `pd.DataFrame` of metric summary values.
 
     Parameters
     ----------
     baseline_run : `str` or `list` of `str
         The name of the run that defines a normalized value of 1.
         If a list is provided, the median value of each metric across that list is used as the reference.
-    summary : `pandas.DataFrame`
-        The summary metrics to normalize (as returned by `get_metric_summaries`)
-    metric_sets : `pandas.DataFrame`
+    summary : `pd.DataFrame`
+        The summary metrics to normalize,
+        as returned by `get_metric_summaries`
+    metric_sets : `pd.DataFrame`
         Metric metadata as returned by `archive.get_metric_sets`
 
     Returns
     -------
-    norm_summary : `pandas.DataFrame`
-        Metric summary values are returned in a `pandas.DataFrame`, with each
+    norm_summary : `pd.DataFrame`
+        Metric summary values are returned in a `pd.DataFrame`, with each
         column providing the metrics for one run, and each row the values for
         one metric. The metric names constitute the columns, and the
         index names are the canonical run names.
@@ -167,7 +168,7 @@ def plot_run_metric(
 
     Parameters
     ----------
-    summary : `pandas.DataFrame`
+    summary : `pd.DataFrame`
         Values to be plotted. Should only include runs and metrics that
         should actually appear on the plot.
     baseline_run : `str`
@@ -190,7 +191,7 @@ def plot_run_metric(
         as they should appear on plot labels. Use this option carefully, because
         it makes it harder to match plots to metric calculation code..
         metric_label_map could be equivalent to metric_set['short_name']
-    metric_set : `pandas.DataFrame`
+    metric_set : `pd.DataFrame`
         Metric metadata as returned by `archive.get_metric_sets`
     ax : `matplotlib.axes.Axes`
         The axes on which to plot the data.
@@ -414,7 +415,7 @@ def plot_run_metric_mesh(
 
     Parameters
     ----------
-    summary : `pandas.DataFrame`
+    summary : `pd.DataFrame`
         Values to be plotted. Should only include runs and metrics that
         should actually appear on the plot.
     baseline_run : `str`
