@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 import numpy as np
+
 from rubin_sim.utils import Site
 
 from .base_stacker import BaseStacker
@@ -14,6 +15,7 @@ def generate_sky_slopes():
     Fit a line to how the sky brightness changes with airmass.
     """
     import healpy as hp
+
     import rubin_sim.skybrightness as sb
 
     sm = sb.SkyModel(mags=True, moon=False, twilight=False, zodiacal=False)
@@ -117,19 +119,12 @@ class M5OptimalStacker(BaseStacker):
             "y": -0.69635091524779691,
             "z": -0.69652846002009128,
         }
-        min_z_possible = np.abs(
-            np.radians(sim_data[self.dec_col]) - self.site.latitude_rad
-        )
+        min_z_possible = np.abs(np.radians(sim_data[self.dec_col]) - self.site.latitude_rad)
         min_airmass_possible = 1.0 / np.cos(min_z_possible)
         for filter_name in np.unique(sim_data[self.filter_col]):
-            delta_sky = sky_slopes[filter_name] * (
-                sim_data[self.airmass_col] - min_airmass_possible
-            )
+            delta_sky = sky_slopes[filter_name] * (sim_data[self.airmass_col] - min_airmass_possible)
             delta_sky[
-                np.where(
-                    (sim_data[self.moon_alt_col] > 0)
-                    | (sim_data[self.sun_alt_col] > np.radians(-18.0))
-                )
+                np.where((sim_data[self.moon_alt_col] > 0) | (sim_data[self.sun_alt_col] > np.radians(-18.0)))
             ] = 0
             # Using Approximation that FWHM~X^0.6. So seeing term in m5 of: 0.25 * log (7.0/FWHMeff )
             # Goes to 0.15 log(FWHM_min / FWHM_eff) in the difference
@@ -137,8 +132,7 @@ class M5OptimalStacker(BaseStacker):
                 sim_data[self.m5_col]
                 - 0.5 * delta_sky
                 - 0.15 * np.log10(min_airmass_possible / sim_data[self.airmass_col])
-                - k_atm[filter_name]
-                * (min_airmass_possible - sim_data[self.airmass_col])
+                - k_atm[filter_name] * (min_airmass_possible - sim_data[self.airmass_col])
             )
             good = np.where(sim_data[self.filter_col] == filter_name)
             sim_data["m5_optimal"][good] = m5_optimal[good]

@@ -15,7 +15,7 @@ class LongGapAGNMetric(BaseMetric):
         units="days",
         xgaps=10,
         badval=-666,
-        **kwargs
+        **kwargs,
     ):
         """Instantiate metric.
         mjdcol = column name for exposure time dates

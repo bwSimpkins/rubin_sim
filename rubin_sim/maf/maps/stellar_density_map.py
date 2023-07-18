@@ -2,6 +2,7 @@ import os
 
 import healpy as hp
 import numpy as np
+
 from rubin_sim.data import get_data_dir
 from rubin_sim.maf.utils import radec2pix
 
@@ -57,9 +58,7 @@ class StellarDensityMap(BaseMap):
                 nside_match = True
         if not nside_match:
             # Compute the healpix for each slice_point on the nside=64 grid
-            indx = radec2pix(
-                self.starmap_nside, slice_points["ra"], slice_points["dec"]
-            )
+            indx = radec2pix(self.starmap_nside, slice_points["ra"], slice_points["dec"])
             slice_points[f"starLumFunc_{self.filtername}"] = self.star_map[indx, :]
 
         slice_points[f"starMapBins_{self.filtername}"] = self.star_map_bins

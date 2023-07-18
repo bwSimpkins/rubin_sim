@@ -197,9 +197,7 @@ class SedList(object):
 
             if sed_name != "None":
                 if self._spec_map is not None:
-                    sed.read_sed_flambda(
-                        os.path.join(self._file_dir, self._spec_map[sed_name])
-                    )
+                    sed.read_sed_flambda(os.path.join(self._file_dir, self._spec_map[sed_name]))
                 else:
                     sed.read_sed_flambda(os.path.join(self._file_dir, sed_name))
 

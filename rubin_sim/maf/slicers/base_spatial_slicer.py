@@ -8,6 +8,7 @@ import warnings
 from functools import wraps
 
 import numpy as np
+
 import rubin_sim.utils as simsUtils
 from rubin_sim.maf.plots.spatial_plotters import BaseHistogram, BaseSkyMap
 
@@ -114,8 +115,7 @@ class BaseSpatialSlicer(BaseSlicer):
         if maps is not None:
             if self.cache_size != 0 and len(maps) > 0:
                 warnings.warn(
-                    "Warning:  Loading maps but cache on."
-                    "Should probably set use_cache=False in slicer."
+                    "Warning:  Loading maps but cache on." "Should probably set use_cache=False in slicer."
                 )
             self._run_maps(maps)
         self._set_rad(self.radius)

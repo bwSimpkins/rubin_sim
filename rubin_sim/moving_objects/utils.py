@@ -59,7 +59,5 @@ def read_observations(simfile, colmap, constraint=None, dbcols=None):
 
     # Go ahead and query for all of the observations.
     simdata = get_sim_data(simfile, constraint, cols)
-    logging.info(
-        "Queried data from opsim %s, fetched %d visits." % (simfile, len(simdata))
-    )
+    logging.info("Queried data from opsim %s, fetched %d visits." % (simfile, len(simdata)))
     return simdata

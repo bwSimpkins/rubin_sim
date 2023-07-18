@@ -1,8 +1,8 @@
 import numpy as np
 from astropy import units as u
-from astropy.coordinates import (AltAz, EarthLocation, SkyCoord, get_moon,
-                                 get_sun)
+from astropy.coordinates import AltAz, EarthLocation, SkyCoord, get_moon, get_sun
 from astropy.time import Time
+
 from rubin_sim.utils import Site
 
 from .base_metric import BaseMetric
@@ -23,7 +23,7 @@ class NightPointingMetric(BaseMetric):
         mjd_col="observationStartMJD",
         metric_name="NightPointing",
         telescope="LSST",
-        **kwargs
+        **kwargs,
     ):
         cols = [alt_col, az_col, filter_col, mjd_col]
         super(NightPointingMetric, self).__init__(

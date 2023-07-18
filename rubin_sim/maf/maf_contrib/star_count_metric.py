@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import numpy as np
+
 from rubin_sim.maf.metrics import BaseMetric
 
 from .star_counts import *

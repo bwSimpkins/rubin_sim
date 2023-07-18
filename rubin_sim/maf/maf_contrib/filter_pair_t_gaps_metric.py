@@ -83,7 +83,7 @@ class FilterPairTGapsMetric(BaseMetric):
             "yy": 288,
         },
         allgaps=True,
-        **kwargs
+        **kwargs,
     ):
         self.mjd_col = mjd_col
         self.filter_col = filter_col
@@ -102,12 +102,8 @@ class FilterPairTGapsMetric(BaseMetric):
 
     def _get_d_t(self, data_slice, f0, f1):
         # select
-        idx0 = (data_slice[self.filter_col] == f0) & (
-            data_slice[self.m5_col] > self.mag_lim[f0]
-        )
-        idx1 = (data_slice[self.filter_col] == f1) & (
-            data_slice[self.m5_col] > self.mag_lim[f1]
-        )
+        idx0 = (data_slice[self.filter_col] == f0) & (data_slice[self.m5_col] > self.mag_lim[f0])
+        idx1 = (data_slice[self.filter_col] == f1) & (data_slice[self.m5_col] > self.mag_lim[f1])
 
         time_col0 = data_slice[self.mjd_col][idx0]
         time_col1 = data_slice[self.mjd_col][idx1]
@@ -135,8 +131,7 @@ class FilterPairTGapsMetric(BaseMetric):
                 d_t = []
                 for time_col in time_col0:
                     time_col_in_window = time_col1[
-                        (time_col1 >= (time_col - dtmax))
-                        & (time_col1 <= (time_col + dtmax))
+                        (time_col1 >= (time_col - dtmax)) & (time_col1 <= (time_col + dtmax))
                     ]
 
                     d_t.append(np.abs(time_col_in_window - time_col))

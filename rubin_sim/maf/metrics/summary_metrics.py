@@ -32,9 +32,7 @@ class FootprintFraction(BaseMetric):
         the nside of the slicer.
     """
 
-    def __init__(
-        self, footprint=None, metric_name="FootprintFraction", n_min=1, **kwargs
-    ):
+    def __init__(self, footprint=None, metric_name="FootprintFraction", n_min=1, **kwargs):
         super().__init__(metric_name=metric_name, **kwargs)
         self.footprint = footprint
         self.nside = hp.npix2nside(footprint.size)
@@ -44,9 +42,7 @@ class FootprintFraction(BaseMetric):
         self.n_min = n_min
 
     def run(self, data_slice, slice_point=None):
-        overlap = np.where(
-            (self.footprint > 0) & (data_slice["metricdata"] >= self.n_min)
-        )[0]
+        overlap = np.where((self.footprint > 0) & (data_slice["metricdata"] >= self.n_min))[0]
         result = overlap.size / self.npix
         return result
 
@@ -77,14 +73,7 @@ class FONv(BaseMetric):
     """
 
     def __init__(
-        self,
-        col="metricdata",
-        asky=18000.0,
-        nside=128,
-        n_visit=825,
-        norm=False,
-        metric_name="FONv",
-        **kwargs
+        self, col="metricdata", asky=18000.0, nside=128, n_visit=825, norm=False, metric_name="FONv", **kwargs
     ):
         """asky = square degrees"""
         super().__init__(col=col, metric_name=metric_name, **kwargs)
@@ -151,7 +140,7 @@ class FOArea(BaseMetric):
         nside=128,
         norm=False,
         metric_name="FOArea",
-        **kwargs
+        **kwargs,
     ):
         """asky = square degrees"""
         super().__init__(col=col, metric_name=metric_name, **kwargs)
@@ -228,13 +217,7 @@ class TotalPowerMetric(BaseMetric):
     """
 
     def __init__(
-        self,
-        col="metricdata",
-        lmin=100.0,
-        lmax=300.0,
-        remove_dipole=True,
-        mask_val=np.nan,
-        **kwargs
+        self, col="metricdata", lmin=100.0, lmax=300.0, remove_dipole=True, mask_val=np.nan, **kwargs
     ):
         self.lmin = lmin
         self.lmax = lmax

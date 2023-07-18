@@ -12,8 +12,7 @@ from sys import argv
 import astropy.units as u
 import matplotlib.pylab as plt
 import numpy as np
-from astropy.coordinates import (AltAz, EarthLocation, SkyCoord, get_moon,
-                                 get_sun)
+from astropy.coordinates import AltAz, EarthLocation, SkyCoord, get_moon, get_sun
 from astropy.time import Time, TimeDelta
 
 __all__ = ["calculate_lsst_field_visibility", "plot_visibility"]
@@ -56,9 +55,7 @@ def calculate_lsst_field_visibility(
 
     n_days = int((t_end - t_start).value)
 
-    dates = np.array(
-        [t_start + TimeDelta(i, format="jd", scale=None) for i in range(0, n_days, 1)]
-    )
+    dates = np.array([t_start + TimeDelta(i, format="jd", scale=None) for i in range(0, n_days, 1)])
 
     target_alts = []
     hrs_visible_per_night = []
@@ -108,12 +105,7 @@ def calculate_lsst_field_visibility(
             # target_alts.append(alts[idx].max())
 
             if verbose:
-                print(
-                    "Target visible from LSST for "
-                    + str(round(tvis * 24.0, 2))
-                    + "hrs on "
-                    + tstr
-                )
+                print("Target visible from LSST for " + str(round(tvis * 24.0, 2)) + "hrs on " + tstr)
 
             hrs_visible_per_night.append((tvis * 24.0))
 
@@ -189,12 +181,8 @@ if __name__ == "__main__":
     else:
         field_ra = input("Please enter the RA in sexigesimal format, J2000.0: ")
         field_dec = input("Please enter the Dec in sexigesimal format, J2000.0: ")
-        start_date = input(
-            "Please enter the start date of the observing window, YYYY-MM-DD: "
-        )
-        end_date = input(
-            "Please enter the end date of the observing window, YYYY-MM-DD: "
-        )
+        start_date = input("Please enter the start date of the observing window, YYYY-MM-DD: ")
+        end_date = input("Please enter the end date of the observing window, YYYY-MM-DD: ")
 
     (total_time_visible, hrs_per_night) = calculate_lsst_field_visibility(
         field_ra, field_dec, start_date, end_date, diagnostics=True

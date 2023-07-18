@@ -10,8 +10,9 @@ import inspect
 import warnings
 
 import numpy as np
-from rubin_sim.maf.stackers.get_col_info import ColInfo
 from six import with_metaclass
+
+from rubin_sim.maf.stackers.get_col_info import ColInfo
 
 __all__ = ["MetricRegistry", "BaseMetric", "ColRegistry"]
 
@@ -35,10 +36,7 @@ class MetricRegistry(type):
                 modname = modname + "."
         metricname = modname + name
         if metricname in cls.registry:
-            warnings.warn(
-                "Redefining metric %s! (there are >1 metrics with the same name)"
-                % (metricname)
-            )
+            warnings.warn("Redefining metric %s! (there are >1 metrics with the same name)" % (metricname))
         if metricname not in ["BaseMetric", "SimpleScalarMetric"]:
             cls.registry[metricname] = cls
 
@@ -186,9 +184,7 @@ class BaseMetric(with_metaclass(MetricRegistry, object)):
             self.metric_dtype = "float"
         # Set physical units, for plotting purposes.
         if units is None:
-            units = " ".join(
-                [self.col_info.get_units(col_name) for col_name in self.col_name_arr]
-            )
+            units = " ".join([self.col_info.get_units(col_name) for col_name in self.col_name_arr])
             if len(units.replace(" ", "")) == 0:
                 units = ""
         self.units = units

@@ -75,8 +75,7 @@ def altazHealpix(
             "group": "Alt/Az",
             "order": orders[f],
             "subgroup": subgroup,
-            "caption": "Pointing History on the alt-az sky (zenith center) for filter %s"
-            % f,
+            "caption": "Pointing History on the alt-az sky (zenith center) for filter %s" % f,
         }
         bundle = mb.MetricBundle(
             metric,

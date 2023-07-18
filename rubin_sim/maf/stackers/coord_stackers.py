@@ -2,6 +2,7 @@ import numpy as np
 from astropy import units as u
 from astropy.coordinates import SkyCoord, get_sun
 from astropy.time import Time
+
 from rubin_sim.utils import _galactic_from_equatorial, calc_lmst_last
 
 from .base_stacker import BaseStacker
@@ -147,9 +148,7 @@ class EclipticStacker(BaseStacker):
                     dec=sim_data[self.dec_col] * u.degree,
                 )
             else:
-                coord = SkyCoord(
-                    ra=sim_data[self.ra_col] * u.rad, dec=sim_data[self.dec_col] * u.rad
-                )
+                coord = SkyCoord(ra=sim_data[self.ra_col] * u.rad, dec=sim_data[self.dec_col] * u.rad)
             coord_ecl = coord.geocentricmeanecliptic
             sim_data["eclipLat"] = coord_ecl.lat.rad
 

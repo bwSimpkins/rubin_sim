@@ -46,16 +46,9 @@ class StarDensityMetric(BaseMetric):
     """
 
     def __init__(
-        self,
-        mag_limit=25.0,
-        filtername="r",
-        units="stars/sq arcsec",
-        maps=["StellarDensityMap"],
-        **kwargs
+        self, mag_limit=25.0, filtername="r", units="stars/sq arcsec", maps=["StellarDensityMap"], **kwargs
     ):
-        super(StarDensityMetric, self).__init__(
-            col=[], maps=maps, units=units, **kwargs
-        )
+        super(StarDensityMetric, self).__init__(col=[], maps=maps, units=units, **kwargs)
         self.mag_limit = mag_limit
         if "rmagLimit" in kwargs:
             warnings.warn(

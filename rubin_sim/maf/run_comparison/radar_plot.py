@@ -60,11 +60,7 @@ def normalize_for_radar(
                 if (col in mag_cols) | (mag_cols == "all"):
                     out_df[col] = 1.0 + (out_df[col] - out_df[col].iloc[indx])
                 else:
-                    out_df[col] = (
-                        1.0
-                        + (out_df[col] - out_df[col].iloc[indx])
-                        / out_df[col].iloc[indx]
-                    )
+                    out_df[col] = 1.0 + (out_df[col] - out_df[col].iloc[indx]) / out_df[col].iloc[indx]
     return out_df
 
 

@@ -84,9 +84,7 @@ def spec_type(mass):
         xnew = np.logspace(-2, 3, 100)
         import matplotlib.pyplot as plt
 
-        plt.plot(
-            mass_range, spec_range, "o", xnew, f2(xnew), "-"
-        )  # , xnew, f2(xnew),'--')
+        plt.plot(mass_range, spec_range, "o", xnew, f2(xnew), "-")  # , xnew, f2(xnew),'--')
         plt.xscale("log")
         plt.show()
     return f2([mass])

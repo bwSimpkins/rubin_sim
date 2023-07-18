@@ -2,6 +2,7 @@ import warnings
 
 import numpy as np
 from astropy.stats import mad_std
+
 from rubin_sim.maf.utils import m52snr
 from rubin_sim.phot_utils import DustValues
 
@@ -52,7 +53,7 @@ class SFUncertMetric(BaseMetric):
         snr_cut=5,
         filter_col="filter",
         dust=True,
-        **kwargs
+        **kwargs,
     ):
         # Assign metric parameters to instance object
         self.times_col = times_col
@@ -75,7 +76,7 @@ class SFUncertMetric(BaseMetric):
             metric_name=self.metric_name,
             units=units,
             maps=maps,
-            **kwargs
+            **kwargs,
         )
         dust_properties = DustValues()
         self.ax1 = dust_properties.ax1

@@ -4,6 +4,7 @@ import argparse
 import os
 
 import numpy as np
+
 from rubin_sim.maf.slicers import MoObjSlicer
 from rubin_sim.utils import survey_start_mjd
 
@@ -19,12 +20,8 @@ def run_moving_calc():
     you have already created the moving object observation files.
     """
 
-    parser = argparse.ArgumentParser(
-        description="Run moving object metrics for a particular scheduler run."
-    )
-    parser.add_argument(
-        "--orbit_file", type=str, help="File containing the moving object orbits."
-    )
+    parser = argparse.ArgumentParser(description="Run moving object metrics for a particular scheduler run.")
+    parser.add_argument("--orbit_file", type=str, help="File containing the moving object orbits.")
     parser.add_argument(
         "--objtype",
         type=str,
@@ -63,8 +60,7 @@ def run_moving_calc():
     parser.add_argument(
         "--h_step",
         type=float,
-        help="Stepsizes in H values. "
-        "If not set, defaults from objtype will be used.",
+        help="Stepsizes in H values. " "If not set, defaults from objtype will be used.",
     )
     parser.add_argument(
         "--h_mark",
@@ -75,8 +71,7 @@ def run_moving_calc():
     parser.add_argument(
         "--characterization",
         type=str,
-        help="Inner/Outer solar system characterization. "
-        "If unset, defaults from objtype will be used.",
+        help="Inner/Outer solar system characterization. " "If unset, defaults from objtype will be used.",
     )
     parser.add_argument(
         "--constraint_info_label",
@@ -102,8 +97,7 @@ def run_moving_calc():
         "--n_years_max",
         type=int,
         default=10,
-        help="Maximum number of years out to which to evaluate completeness."
-        "Default 10.",
+        help="Maximum number of years out to which to evaluate completeness." "Default 10.",
     )
     parser.add_argument(
         "--start_time",

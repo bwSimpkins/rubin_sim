@@ -17,8 +17,7 @@ import numpy as np
 if __name__ == "__main__":
     # Hide imports here so documentation builds
     from rubin_sim.catalogs.db import DBObject
-    from rubin_sim.utils import (angular_separation, halfSpaceFromRaDec,
-                                 levelFromHtmid, raDec2Hpid)
+    from rubin_sim.utils import angular_separation, halfSpaceFromRaDec, levelFromHtmid, raDec2Hpid
 
     # from rubin_sim.catalogs.generation.db import CatalogDBObject
     # Import the bits needed to get the catalog to work
@@ -106,14 +105,10 @@ if __name__ == "__main__":
 
         dtype = np.dtype([("ra", float), ("dec", float), ("mag", float)])
 
-        results = gaia_db.get_arbitrary_chunk_iterator(
-            query, dtype=dtype, chunk_size=10000
-        )
+        results = gaia_db.get_arbitrary_chunk_iterator(query, dtype=dtype, chunk_size=10000)
         result = list(results)[0]
 
-        distances = angular_separation(
-            result["ra"], result["dec"], ra[i], dec[i]
-        )  # Degrees
+        distances = angular_separation(result["ra"], result["dec"], ra[i], dec[i])  # Degrees
         result = result[np.where(distances < radius)]
 
         import pdb

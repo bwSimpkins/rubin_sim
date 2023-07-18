@@ -2,6 +2,7 @@ from functools import wraps
 
 import matplotlib.path as mplPath
 import numpy as np
+
 from rubin_sim.maf.plots import HealpixSDSSSkyMap
 from rubin_sim.utils import _xyz_from_ra_dec, gnomonic_project_toxy
 
@@ -22,7 +23,7 @@ class HealpixSDSSSlicer(HealpixSlicer):
         use_cache=True,
         radius=17.0 / 60.0,
         leafsize=100,
-        **kwargs
+        **kwargs,
     ):
         """Using one corner of the chip as the spatial key and the diagonal as the radius."""
         super().__init__(
@@ -53,9 +54,7 @@ class HealpixSDSSSlicer(HealpixSlicer):
         def _slice_sim_data(islice):
             """Return indexes for relevant opsim data at slice_point
             (slice_point=lon_col/lat_col value .. usually ra/dec)."""
-            sx, sy, sz = _xyz_from_ra_dec(
-                self.slice_points["ra"][islice], self.slice_points["dec"][islice]
-            )
+            sx, sy, sz = _xyz_from_ra_dec(self.slice_points["ra"][islice], self.slice_points["dec"][islice])
             # Query against tree.
             initIndices = self.opsimtree.query_ball_point((sx, sy, sz), self.rad)
             # Loop through all the images and check if the slice_point is inside the corners of the chip

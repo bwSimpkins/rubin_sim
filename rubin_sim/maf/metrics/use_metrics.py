@@ -1,5 +1,6 @@
 # imports
 import numpy as np
+
 from rubin_sim.maf.metrics.base_metric import BaseMetric
 
 # constants

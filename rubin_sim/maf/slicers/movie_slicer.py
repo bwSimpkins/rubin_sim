@@ -7,6 +7,7 @@ from functools import wraps
 from subprocess import CalledProcessError
 
 import numpy as np
+
 from rubin_sim.maf.stackers import ColInfo
 from rubin_sim.maf.utils import optimal_bins
 
@@ -108,8 +109,7 @@ class MovieSlicer(BaseSlicer):
         if self.bin_size is not None:
             if self.bins is not None:
                 warnings.warn(
-                    "Both bin_size and bins have been set; Using bin_size %f only."
-                    % (self.bin_size)
+                    "Both bin_size and bins have been set; Using bin_size %f only." % (self.bin_size)
                 )
             self.bins = np.arange(
                 self.bin_min,
@@ -204,9 +204,7 @@ class MovieSlicer(BaseSlicer):
         Evaluate if slicers are equivalent.
         """
         if isinstance(other_slicer, MovieSlicer):
-            return np.array_equal(
-                other_slicer.slice_points["bins"], self.slice_points["bins"]
-            )
+            return np.array_equal(other_slicer.slice_points["bins"], self.slice_points["bins"])
         else:
             return False
 
@@ -224,9 +222,7 @@ class MovieSlicer(BaseSlicer):
         Takes in metric and slicer metadata and calls ffmpeg to stitch together output files.
         """
         if not os.path.isdir(out_dir):
-            raise Exception(
-                "Cannot find output directory %s with movie input files." % (out_dir)
-            )
+            raise Exception("Cannot find output directory %s with movie input files." % (out_dir))
         # make video
         # ffmpeg -r 30 -i [image names - FilterColors_%03d_SkyMap.png] -r 30
         #    -pix_fmt yuv420p -crf 18 -preset slower outfile

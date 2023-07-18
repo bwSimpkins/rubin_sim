@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 
 import numpy as np
+
 from rubin_sim.maf.metrics import BaseMetric
 
 from .star_counts import *
@@ -29,6 +30,4 @@ class StarCountMassMetric(BaseMetric):
     def run(self, data_slice, slice_point=None):
         self.dec_col = np.degrees(data_slice[0][3])
         self.ra_col = np.degrees(data_slice[0][2])
-        return starcount_bymass.starcount_bymass(
-            self.ra_col, self.dec_col, self.m1, self.m2, self.band
-        )
+        return starcount_bymass.starcount_bymass(self.ra_col, self.dec_col, self.m1, self.m2, self.band)

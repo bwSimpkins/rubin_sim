@@ -2,6 +2,7 @@ import os
 
 import healpy as hp
 import numpy as np
+
 from rubin_sim.data import get_data_dir
 from rubin_sim.maf.utils import radec2pix
 

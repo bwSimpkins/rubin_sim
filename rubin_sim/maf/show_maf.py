@@ -4,11 +4,12 @@ import argparse
 import os
 import webbrowser
 
-import rubin_sim
 from jinja2 import Environment, FileSystemLoader
+from tornado import ioloop, web
+
+import rubin_sim
 from rubin_sim.maf.db import add_run_to_database
 from rubin_sim.maf.web import MafTracking
-from tornado import ioloop, web
 
 
 class RunSelectHandler(web.RequestHandler):
@@ -160,9 +161,7 @@ def show_maf():
         help="Add a comment to the trackingDB describing the "
         + " MAF analysis of this directory (paired with maf_dir argument).",
     )
-    parser.add_argument(
-        "-p", "--port", type=int, default=8888, help="Port for connecting to showMaf."
-    )
+    parser.add_argument("-p", "--port", type=int, default=8888, help="Port for connecting to showMaf.")
     parser.add_argument(
         "--no_browser",
         dest="no_browser",
@@ -211,10 +210,7 @@ def show_maf():
     # Start up tornado app.
     application = make_app()
     application.listen(args.port)
-    print(
-        "Tornado Starting: \nPoint your web browser to http://localhost:%d/ \nCtrl-C to stop"
-        % (args.port)
-    )
+    print("Tornado Starting: \nPoint your web browser to http://localhost:%d/ \nCtrl-C to stop" % (args.port))
     if not args.no_browser:
         webbrowser.open_new_tab("http://localhost:%d" % (args.port))
     ioloop.IOLoop.instance().start()

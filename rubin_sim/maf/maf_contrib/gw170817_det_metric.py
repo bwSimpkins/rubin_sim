@@ -58,7 +58,7 @@ class GW170817DetMetric(TransientAsciiSEDMetric):
         num_filters=2,
         filter_time=25.0,
         num_phases_to_run=5,
-        **kwargs
+        **kwargs,
     ):
         """"""
         super(GW170817DetMetric, self).__init__(
@@ -68,5 +68,5 @@ class GW170817DetMetric(TransientAsciiSEDMetric):
             num_filters=num_filters,
             filter_time=filter_time,
             num_phases_to_run=num_phases_to_run,
-            **kwargs
+            **kwargs,
         )

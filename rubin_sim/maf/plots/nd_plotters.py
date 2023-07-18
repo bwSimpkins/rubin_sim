@@ -81,9 +81,7 @@ class TwoDSubsetData(BasePlotter):
         else:
             norm = None
         if plot_dict["clims"] is None:
-            im = plt.contourf(
-                x, y, md, 250, norm=norm, extend="both", cmap=plot_dict["cmap"]
-            )
+            im = plt.contourf(x, y, md, 250, norm=norm, extend="both", cmap=plot_dict["cmap"])
         else:
             im = plt.contourf(
                 x,

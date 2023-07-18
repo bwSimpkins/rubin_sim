@@ -21,23 +21,14 @@ class ExgalM5(BaseMetric):
     """
 
     def __init__(
-        self,
-        m5_col="fiveSigmaDepth",
-        metric_name="ExgalM5",
-        units="mag",
-        filter_col="filter",
-        **kwargs
+        self, m5_col="fiveSigmaDepth", metric_name="ExgalM5", units="mag", filter_col="filter", **kwargs
     ):
         # Set the name for the dust map to use. This is gathered into the MetricBundle.
         maps = ["DustMap"]
         self.m5_col = m5_col
         self.filter_col = filter_col
         super().__init__(
-            col=[self.m5_col, self.filter_col],
-            maps=maps,
-            metric_name=metric_name,
-            units=units,
-            **kwargs
+            col=[self.m5_col, self.filter_col], maps=maps, metric_name=metric_name, units=units, **kwargs
         )
         # Set the default wavelength limits for the lsst filters. These are approximately correct.
         dust_properties = DustValues()

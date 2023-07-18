@@ -1,4 +1,5 @@
 import numpy as np
+
 from rubin_sim.maf.utils import m52snr
 
 from .base_metric import BaseMetric
@@ -12,9 +13,7 @@ class SnrWeightedMetric(BaseMetric):
     def __init__(self, col, m5_col="fiveSigmaDepth", metric_name=None, **kwargs):
         if metric_name is None:
             metric_name = "SNR Weighted %s" % col
-        super(SnrWeightedMetric, self).__init__(
-            col=[m5_col, col], metric_name=metric_name, **kwargs
-        )
+        super(SnrWeightedMetric, self).__init__(col=[m5_col, col], metric_name=metric_name, **kwargs)
         self.m5_col = m5_col
         self.col = col
         self.star_mag = 20.0  # Arbitrary reference, value doesn't matter

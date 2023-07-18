@@ -21,17 +21,9 @@ distancebins = 51
 
 
 def star_vols(d1, d2, area):
-    distance_edges = (np.linspace((d1**3.0), (d2**3.0), num=distancebins)) ** (
-        1.0 / 3
-    )
-    volumeshell = (
-        (area / skyarea)
-        * (4.0 * np.pi / 3)
-        * (distance_edges[1:] ** 3 - distance_edges[:-1] ** 3)
-    )
-    distances = ((distance_edges[1:] ** 3 + distance_edges[:-1] ** 3) / 2.0) ** (
-        1.0 / 3
-    )
+    distance_edges = (np.linspace((d1**3.0), (d2**3.0), num=distancebins)) ** (1.0 / 3)
+    volumeshell = (area / skyarea) * (4.0 * np.pi / 3) * (distance_edges[1:] ** 3 - distance_edges[:-1] ** 3)
+    distances = ((distance_edges[1:] ** 3 + distance_edges[:-1] ** 3) / 2.0) ** (1.0 / 3)
     return volumeshell, distances
 
 

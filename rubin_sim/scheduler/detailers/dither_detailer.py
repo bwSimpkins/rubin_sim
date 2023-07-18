@@ -1,7 +1,13 @@
 import numpy as np
+
 from rubin_sim.scheduler.detailers import BaseDetailer
-from rubin_sim.utils import (_approx_altaz2pa, _approx_ra_dec2_alt_az, bearing,
-                             dest_latlon, gnomonic_project_tosky)
+from rubin_sim.utils import (
+    _approx_altaz2pa,
+    _approx_ra_dec2_alt_az,
+    bearing,
+    dest_latlon,
+    gnomonic_project_tosky,
+)
 
 __all__ = ["DitherDetailer", "CameraRotDetailer", "EuclidDitherDetailer"]
 
@@ -175,9 +181,7 @@ class EuclidDitherDetailer(BaseDetailer):
 
     def __call__(self, observation_list, conditions):
         # Generate offsets in RA and Dec
-        ra_a, dec_a, ra_b, dec_b = self._generate_offsets(
-            len(observation_list), conditions.night
-        )
+        ra_a, dec_a, ra_b, dec_b = self._generate_offsets(len(observation_list), conditions.night)
 
         for i, obs in enumerate(observation_list):
             if obs[0]["note"][-1] == "a":
@@ -205,9 +209,7 @@ class CameraRotDetailer(BaseDetailer):
         If True, only set a new offset per night. If False, randomly rotates every observation.
     """
 
-    def __init__(
-        self, max_rot=90.0, min_rot=-90.0, per_night=True, seed=42, nnights=7305
-    ):
+    def __init__(self, max_rot=90.0, min_rot=-90.0, per_night=True, seed=42, nnights=7305):
         self.survey_features = {}
 
         self.current_night = -1

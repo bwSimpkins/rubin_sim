@@ -7,22 +7,26 @@ import warnings
 import healpy as hp
 import matplotlib.pylab as plt
 import numpy as np
+from astropy import units as u
+from astropy.coordinates import SkyCoord
+
+# So things don't fail on hyak
+from astropy.utils import iers
+
 import rubin_sim
 import rubin_sim.scheduler.basis_functions as bf
 import rubin_sim.scheduler.detailers as detailers
-from astropy import units as u
-from astropy.coordinates import SkyCoord
-# So things don't fail on hyak
-from astropy.utils import iers
 from rubin_sim.scheduler import sim_runner
 from rubin_sim.scheduler.model_observatory import ModelObservatory
 from rubin_sim.scheduler.schedulers import CoreScheduler, FilterSchedUzy
-from rubin_sim.scheduler.surveys import (BlobSurvey, GreedySurvey,
-                                         LongGapSurvey, ScriptedSurvey,
-                                         generate_ddf_scheduled_obs)
-from rubin_sim.scheduler.utils import (ConstantFootprint,
-                                       EuclidOverlapFootprint,
-                                       make_rolling_footprints)
+from rubin_sim.scheduler.surveys import (
+    BlobSurvey,
+    GreedySurvey,
+    LongGapSurvey,
+    ScriptedSurvey,
+    generate_ddf_scheduled_obs,
+)
+from rubin_sim.scheduler.utils import ConstantFootprint, EuclidOverlapFootprint, make_rolling_footprints
 from rubin_sim.utils import _hpid2_ra_dec
 
 iers.conf.auto_download = False
@@ -124,9 +128,7 @@ def standard_bf(
         )
 
     else:
-        bfs.append(
-            (bf.M5DiffBasisFunction(filtername=filtername, nside=nside), m5_weight)
-        )
+        bfs.append((bf.M5DiffBasisFunction(filtername=filtername, nside=nside), m5_weight))
 
     if filtername2 is not None:
         bfs.append(
@@ -340,9 +342,7 @@ def blob_for_long(
     for filtername, filtername2 in zip(filter1s, filter2s):
         detailer_list = []
         detailer_list.append(
-            detailers.CameraRotDetailer(
-                min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits)
-            )
+            detailers.CameraRotDetailer(min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits))
         )
         detailer_list.append(detailers.CloseAltDetailer())
         # List to hold tuples of (basis_function_object, weight)
@@ -418,7 +418,7 @@ def blob_for_long(
                 ignore_obs=ignore_obs,
                 nexp=nexp,
                 detailers=detailer_list,
-                **BlobSurvey_params
+                **BlobSurvey_params,
             )
         )
 
@@ -465,12 +465,8 @@ def gen_long_gaps_survey(
             g_template_weight=g_template_weight,
             blob_names=blob_names,
         )
-        scripted = ScriptedSurvey(
-            [], nside=nside, ignore_obs=["blob", "DDF", "twi", "pair"]
-        )
-        surveys.append(
-            LongGapSurvey(blob[0], scripted, gap_range=gap_range, avoid_zenith=True)
-        )
+        scripted = ScriptedSurvey([], nside=nside, ignore_obs=["blob", "DDF", "twi", "pair"])
+        surveys.append(LongGapSurvey(blob[0], scripted, gap_range=gap_range, avoid_zenith=True))
 
     return surveys
 
@@ -542,9 +538,7 @@ def gen_greedy_surveys(
 
     surveys = []
     detailer_list = [
-        detailers.CameraRotDetailer(
-            min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits)
-        )
+        detailers.CameraRotDetailer(min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits))
     ]
     detailer_list.append(detailers.Rottep2RotspDesiredDetailer())
 
@@ -578,9 +572,7 @@ def gen_greedy_surveys(
         # Masks, give these 0 weight
         bfs.append(
             (
-                bf.ZenithShadowMaskBasisFunction(
-                    nside=nside, shadow_minutes=shadow_minutes, max_alt=max_alt
-                ),
+                bf.ZenithShadowMaskBasisFunction(nside=nside, shadow_minutes=shadow_minutes, max_alt=max_alt),
                 0,
             )
         )
@@ -596,7 +588,7 @@ def gen_greedy_surveys(
                 ignore_obs=ignore_obs,
                 nexp=nexp,
                 detailers=detailer_list,
-                **greed_survey_params
+                **greed_survey_params,
             )
         )
 
@@ -714,9 +706,7 @@ def generate_blobs(
     for filtername, filtername2 in zip(filter1s, filter2s):
         detailer_list = []
         detailer_list.append(
-            detailers.CameraRotDetailer(
-                min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits)
-            )
+            detailers.CameraRotDetailer(min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits))
         )
         detailer_list.append(detailers.Rottep2RotspDesiredDetailer())
         detailer_list.append(detailers.CloseAltDetailer())
@@ -841,7 +831,7 @@ def generate_blobs(
                 ignore_obs=ignore_obs,
                 nexp=nexp,
                 detailers=detailer_list,
-                **BlobSurvey_params
+                **BlobSurvey_params,
             )
         )
 
@@ -953,9 +943,7 @@ def generate_twi_blobs(
     for filtername, filtername2 in zip(filter1s, filter2s):
         detailer_list = []
         detailer_list.append(
-            detailers.CameraRotDetailer(
-                min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits)
-            )
+            detailers.CameraRotDetailer(min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits))
         )
         detailer_list.append(detailers.Rottep2RotspDesiredDetailer())
         detailer_list.append(detailers.CloseAltDetailer())
@@ -1025,9 +1013,7 @@ def generate_twi_blobs(
             time_needed = times_needed[0]
         else:
             time_needed = times_needed[1]
-        bfs.append(
-            (bf.TimeToTwilightBasisFunction(time_needed=time_needed, alt_limit=12), 0.0)
-        )
+        bfs.append((bf.TimeToTwilightBasisFunction(time_needed=time_needed, alt_limit=12), 0.0))
 
         # Let's turn off twilight blobs on nights where we are
         # doing NEO hunts
@@ -1054,7 +1040,7 @@ def generate_twi_blobs(
                 ignore_obs=ignore_obs,
                 nexp=nexp,
                 detailers=detailer_list,
-                **BlobSurvey_params
+                **BlobSurvey_params,
             )
         )
 
@@ -1064,12 +1050,8 @@ def generate_twi_blobs(
 def ddf_surveys(detailers=None, season_unobs_frac=0.2, euclid_detailers=None):
     obs_array = generate_ddf_scheduled_obs(season_unobs_frac=season_unobs_frac)
 
-    euclid_obs = np.where(
-        (obs_array["note"] == "DD:EDFS_b") | (obs_array["note"] == "DD:EDFS_a")
-    )[0]
-    all_other = np.where(
-        (obs_array["note"] != "DD:EDFS_b") & (obs_array["note"] != "DD:EDFS_a")
-    )[0]
+    euclid_obs = np.where((obs_array["note"] == "DD:EDFS_b") | (obs_array["note"] == "DD:EDFS_a"))[0]
+    all_other = np.where((obs_array["note"] != "DD:EDFS_b") & (obs_array["note"] != "DD:EDFS_a"))[0]
 
     survey1 = ScriptedSurvey([], detailers=detailers)
     survey1.set_script(obs_array[all_other])
@@ -1099,9 +1081,7 @@ def ecliptic_target(nside=32, dist_to_eclip=40.0, dec_max=30.0, mask=None):
     result = np.zeros(ra.size)
     coord = SkyCoord(ra=ra * u.rad, dec=dec * u.rad)
     eclip_lat = coord.barycentrictrueecliptic.lat.radian
-    good = np.where(
-        (np.abs(eclip_lat) < np.radians(dist_to_eclip)) & (dec < np.radians(dec_max))
-    )
+    good = np.where((np.abs(eclip_lat) < np.radians(dist_to_eclip)) & (dec < np.radians(dec_max)))
     result[good] += 1
 
     if mask is not None:
@@ -1182,17 +1162,11 @@ def generate_twilight_near_sun(
     for filtername in filters:
         detailer_list = []
         detailer_list.append(
-            detailers.CameraRotDetailer(
-                min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits)
-            )
+            detailers.CameraRotDetailer(min_rot=np.min(camera_rot_limits), max_rot=np.max(camera_rot_limits))
         )
         detailer_list.append(detailers.CloseAltDetailer())
         # Should put in a detailer so things start at lowest altitude
-        detailer_list.append(
-            detailers.TwilightTripleDetailer(
-                slew_estimate=slew_estimate, n_repeat=n_repeat
-            )
-        )
+        detailer_list.append(detailers.TwilightTripleDetailer(slew_estimate=slew_estimate, n_repeat=n_repeat))
         bfs = []
 
         bfs.append(
@@ -1213,31 +1187,21 @@ def generate_twilight_near_sun(
                 slewtime_weight,
             )
         )
-        bfs.append(
-            (bf.StrictFilterBasisFunction(filtername=filtername), stayfilter_weight)
-        )
+        bfs.append((bf.StrictFilterBasisFunction(filtername=filtername), stayfilter_weight))
         # Need a toward the sun, reward high airmass, with an airmass cutoff basis function.
-        bfs.append(
-            (bf.NearSunTwilightBasisFunction(nside=nside, max_airmass=max_airmass), 0)
-        )
+        bfs.append((bf.NearSunTwilightBasisFunction(nside=nside, max_airmass=max_airmass), 0))
         bfs.append(
             (
-                bf.ZenithShadowMaskBasisFunction(
-                    nside=nside, shadow_minutes=shadow_minutes, max_alt=max_alt
-                ),
+                bf.ZenithShadowMaskBasisFunction(nside=nside, shadow_minutes=shadow_minutes, max_alt=max_alt),
                 0,
             )
         )
-        bfs.append(
-            (bf.MoonAvoidanceBasisFunction(nside=nside, moon_distance=moon_distance), 0)
-        )
+        bfs.append((bf.MoonAvoidanceBasisFunction(nside=nside, moon_distance=moon_distance), 0))
         bfs.append((bf.FilterLoadedBasisFunction(filternames=filtername), 0))
         bfs.append((bf.PlanetMaskBasisFunction(nside=nside), 0))
         bfs.append(
             (
-                bf.SolarElongationMaskBasisFunction(
-                    min_elong=0.0, max_elong=max_elong, nside=nside
-                ),
+                bf.SolarElongationMaskBasisFunction(min_elong=0.0, max_elong=max_elong, nside=nside),
                 0,
             )
         )
@@ -1356,9 +1320,7 @@ def example_scheduler(
         Limit for how far to rotationally dither DDF fields (degrees)
     """
     if nside < 32:
-        warnings.warn(
-            "nside < 32 is lower resolution than the field of view, scheduler may perform poorly."
-        )
+        warnings.warn("nside < 32 is lower resolution than the field of view, scheduler may perform poorly.")
 
     reverse_neo_night_pattern = [not val for val in neo_night_pattern]
 
@@ -1366,9 +1328,7 @@ def example_scheduler(
     sky = EuclidOverlapFootprint(nside=nside, smc_radius=4, lmc_radius=6)
     footprints_hp_array, labels = sky.return_maps()
 
-    wfd_indx = np.where(
-        (labels == "lowdust") | (labels == "LMC_SMC") | (labels == "virgo")
-    )[0]
+    wfd_indx = np.where((labels == "lowdust") | (labels == "LMC_SMC") | (labels == "virgo"))[0]
     wfd_footprint = footprints_hp_array["r"] * 0
     wfd_footprint[wfd_indx] = 1
 
@@ -1406,21 +1366,15 @@ def example_scheduler(
 
     # Set up the DDF surveys to dither
     u_detailer = detailers.FilterNexp(filtername="u", nexp=1)
-    dither_detailer = detailers.DitherDetailer(
-        per_night=per_night, max_dither=max_dither
-    )
+    dither_detailer = detailers.DitherDetailer(per_night=per_night, max_dither=max_dither)
     details = [
-        detailers.CameraRotDetailer(
-            min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit
-        ),
+        detailers.CameraRotDetailer(min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit),
         dither_detailer,
         u_detailer,
         detailers.Rottep2RotspDesiredDetailer(),
     ]
     euclid_detailers = [
-        detailers.CameraRotDetailer(
-            min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit
-        ),
+        detailers.CameraRotDetailer(min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit),
         detailers.EuclidDitherDetailer(),
         u_detailer,
         detailers.Rottep2RotspDesiredDetailer(),
@@ -1532,9 +1486,7 @@ def main(args):
     sky = EuclidOverlapFootprint(nside=nside, smc_radius=4, lmc_radius=6)
     footprints_hp_array, labels = sky.return_maps()
 
-    wfd_indx = np.where(
-        (labels == "lowdust") | (labels == "LMC_SMC") | (labels == "virgo")
-    )[0]
+    wfd_indx = np.where((labels == "lowdust") | (labels == "LMC_SMC") | (labels == "virgo"))[0]
     wfd_footprint = footprints_hp_array["r"] * 0
     wfd_footprint[wfd_indx] = 1
 
@@ -1572,21 +1524,15 @@ def main(args):
 
     # Set up the DDF surveys to dither
     u_detailer = detailers.FilterNexp(filtername="u", nexp=1)
-    dither_detailer = detailers.DitherDetailer(
-        per_night=per_night, max_dither=max_dither
-    )
+    dither_detailer = detailers.DitherDetailer(per_night=per_night, max_dither=max_dither)
     details = [
-        detailers.CameraRotDetailer(
-            min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit
-        ),
+        detailers.CameraRotDetailer(min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit),
         dither_detailer,
         u_detailer,
         detailers.Rottep2RotspDesiredDetailer(),
     ]
     euclid_detailers = [
-        detailers.CameraRotDetailer(
-            min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit
-        ),
+        detailers.CameraRotDetailer(min_rot=-camera_ddf_rot_limit, max_rot=camera_ddf_rot_limit),
         detailers.EuclidDitherDetailer(),
         u_detailer,
         detailers.Rottep2RotspDesiredDetailer(),
@@ -1643,9 +1589,7 @@ if __name__ == "__main__":
     parser.set_defaults(verbose=False)
     parser.add_argument("--survey_length", type=float, default=365.25 * 10)
     parser.add_argument("--outDir", type=str, default="")
-    parser.add_argument(
-        "--maxDither", type=float, default=0.7, help="Dither size for DDFs (deg)"
-    )
+    parser.add_argument("--maxDither", type=float, default=0.7, help="Dither size for DDFs (deg)")
     parser.add_argument(
         "--moon_illum_limit",
         type=float,

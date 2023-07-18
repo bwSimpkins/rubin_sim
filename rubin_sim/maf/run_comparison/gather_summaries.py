@@ -69,9 +69,7 @@ def combine_result_dbs(run_dirs, dbfilename="resultsDb_sqlite.db"):
 
         # Make a DataFrame row
         row = pd.DataFrame(
-            temp_df["summary_value"].values.reshape(
-                [1, temp_df["summary_value"].values.size]
-            ),
+            temp_df["summary_value"].values.reshape([1, temp_df["summary_value"].values.size]),
             columns=col_names,
             index=[row_name],
         )

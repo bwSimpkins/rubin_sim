@@ -2,6 +2,7 @@ import glob
 import os
 
 import numpy as np
+
 from rubin_sim.data import get_data_dir
 from rubin_sim.moving_objects import DirectObs, Orbits
 
@@ -25,15 +26,11 @@ if __name__ == "__main__":
         # Array to hold results
         results = np.zeros((len(orbits.orbits), np.size(mjds)), dt)
         do = DirectObs()
-        _temp_positions = do.generate_ephemerides(
-            orbits, mjds, eph_mode="nbody", eph_type="basic"
-        )
+        _temp_positions = do.generate_ephemerides(orbits, mjds, eph_mode="nbody", eph_type="basic")
         results["ra"] += _temp_positions["ra"]
         results["dec"] += _temp_positions["dec"]
         np.savez(
-            os.path.join(
-                output_dir, os.path.basename(filename).replace(".txt", ".npz")
-            ),
+            os.path.join(output_dir, os.path.basename(filename).replace(".txt", ".npz")),
             positions=results,
             mjds=mjds,
         )
