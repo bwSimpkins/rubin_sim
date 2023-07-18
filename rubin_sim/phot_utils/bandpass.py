@@ -48,7 +48,7 @@ the individual throughputs
 new wavelen/sb arrays (wavelength sampled like self)
 * calc_zp_t : calculate instrumental zeropoint for this bandpass
 * calc_eff_wavelen: calculate the effective wavelength (using both Sb and Phi) for this bandpass
-* writeThroughput : utility to write bandpass information to file
+* write_throughput : utility to write bandpass information to file
 """
 import gzip
 import os
