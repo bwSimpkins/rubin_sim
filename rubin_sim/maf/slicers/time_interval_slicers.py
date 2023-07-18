@@ -5,9 +5,9 @@ Primarily intended for hourglass plots.
 
 # pylint: disable=too-many-arguments
 
+from collections import defaultdict
 # imports
 from functools import wraps
-from collections import defaultdict
 
 import numpy as np
 import pandas as pd

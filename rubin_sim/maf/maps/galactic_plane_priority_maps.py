@@ -1,12 +1,12 @@
 import os
 import warnings
-import numpy as np
+
 import healpy as hp
+import numpy as np
 from astropy.io import fits
 from rubin_sim.data import get_data_dir
-from rubin_sim.maf.utils import radec2pix
 from rubin_sim.maf.maps import BaseMap
-
+from rubin_sim.maf.utils import radec2pix
 
 __all__ = [
     "gp_priority_map_components_to_keys",

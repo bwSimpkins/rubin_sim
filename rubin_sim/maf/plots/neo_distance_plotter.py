@@ -1,9 +1,11 @@
-from builtins import zip
-import numpy as np
 import copy
+from builtins import zip
+
 import matplotlib.pyplot as plt
-from .plot_handler import BasePlotter
+import numpy as np
 from matplotlib.patches import Ellipse
+
+from .plot_handler import BasePlotter
 
 __all__ = ["NeoDistancePlotter"]
 

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+import argparse
 import glob
 import os
-from rubin_sim.data import get_data_dir
+
 import rubin_sim.maf.db as db
-import argparse
+from rubin_sim.data import get_data_dir
 from rubin_sim.utils import survey_start_mjd
 
 

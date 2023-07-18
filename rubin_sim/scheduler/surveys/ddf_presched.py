@@ -1,8 +1,9 @@
-import numpy as np
-from rubin_sim.utils import calc_season, ddf_locations
-from rubin_sim.scheduler.utils import scheduled_observation
-from rubin_sim.data import get_data_dir
 import os
+
+import numpy as np
+from rubin_sim.data import get_data_dir
+from rubin_sim.scheduler.utils import scheduled_observation
+from rubin_sim.utils import calc_season, ddf_locations
 
 __all__ = ["generate_ddf_scheduled_obs"]
 

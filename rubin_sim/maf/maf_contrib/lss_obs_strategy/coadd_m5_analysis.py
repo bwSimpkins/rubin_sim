@@ -3,34 +3,29 @@
 # to consider various survey strategies, mask shallow borders, create/save/show relevant plots, do
 # an alm analysis, and save data.
 
+import copy
+import os
+
+import healpy as hp
+import matplotlib.pyplot as plt
 # Humna Awan: humna.awan@rutgers.edu
 #####################################################################################################
 import numpy as np
-import os
-import healpy as hp
-import copy
-from matplotlib.ticker import FuncFormatter
-from matplotlib.ticker import MaxNLocator
-
-import matplotlib.pyplot as plt
-
 import rubin_sim.maf.db as db
-import rubin_sim.maf.metrics as metrics
-import rubin_sim.maf.slicers as slicers
-import rubin_sim.maf.plots as plots
-import rubin_sim.maf.metric_bundles as metricBundles
 import rubin_sim.maf.maps as maps
+import rubin_sim.maf.metric_bundles as metricBundles
+import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
+import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as mafStackers  # stackers in sims_maf
-
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.masking_algorithm_generalized import (
-    masking_algorithm_generalized,
-)
+from matplotlib.ticker import FuncFormatter, MaxNLocator
 from rubin_sim.maf.maf_contrib.lss_obs_strategy.alm_plots import alm_plots
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.save_bundle_data_npz_format import (
-    save_bundle_data_npz_format,
-)
-
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import plot_color
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import \
+    plot_color
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.masking_algorithm_generalized import \
+    masking_algorithm_generalized
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.save_bundle_data_npz_format import \
+    save_bundle_data_npz_format
 
 __all__ = ["coadd_m5_analysis"]
 

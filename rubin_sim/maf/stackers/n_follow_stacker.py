@@ -1,5 +1,7 @@
 from builtins import zip
+
 import numpy as np
+
 from .base_stacker import BaseStacker
 from .coord_stackers import ra_dec2_alt_az
 

@@ -2,15 +2,17 @@
 Potentially could diverge from versions in scienceRadar.
 """
 import warnings
-import numpy as np
+
 import healpy as hp
+import numpy as np
+import rubin_sim.maf.metric_bundles as mb
 import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
 import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as stackers
-import rubin_sim.maf.plots as plots
-import rubin_sim.maf.metric_bundles as mb
+
 from .col_map_dict import col_map_dict
-from .common import standard_summary, radec_cols, combine_info_labels
+from .common import combine_info_labels, radec_cols, standard_summary
 
 __all__ = ["fOBatch", "astrometryBatch", "rapidRevisitBatch"]
 

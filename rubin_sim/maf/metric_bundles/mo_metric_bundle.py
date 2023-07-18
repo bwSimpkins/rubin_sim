@@ -1,16 +1,16 @@
 from __future__ import print_function
-from builtins import object
+
 import os
 import warnings
+from builtins import object
+
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.ma as ma
-import matplotlib.pyplot as plt
-
-from rubin_sim.maf.metrics import BaseMoMetric
-from rubin_sim.maf.metrics import ValueAtHMetric
+from rubin_sim.maf.metrics import BaseMoMetric, ValueAtHMetric
+from rubin_sim.maf.plots import PlotHandler
 from rubin_sim.maf.slicers import MoObjSlicer
 from rubin_sim.maf.stackers import BaseMoStacker, MoMagStacker
-from rubin_sim.maf.plots import PlotHandler
 
 from .metric_bundle import MetricBundle
 

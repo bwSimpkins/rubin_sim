@@ -28,48 +28,42 @@
 #
 # Humna Awan: humna.awan@rutgers.edu
 #####################################################################################################
+import os
+
+import healpy as hp
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-import healpy as hp
 
 try:
-    from sympy.solvers import solve
     from sympy import Symbol
+    from sympy.solvers import solve
 except ImportError:
     pass
 import copy
-import time
-from matplotlib.ticker import FuncFormatter
 import datetime
+import time
 
 import rubin_sim.maf
 import rubin_sim.maf.db as db
+import rubin_sim.maf.maps as maps
+import rubin_sim.maf.metric_bundles as metricBundles
 import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
 import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as mafStackers  # stackers in sims_maf
-import rubin_sim.maf.plots as plots
-import rubin_sim.maf.metric_bundles as metricBundles
-import rubin_sim.maf.maps as maps
-
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.galaxy_counts_metric_extended import (
-    GalaxyCountsMetricExtended as GalaxyCountsMetric,
-)
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.galaxy_counts_with_pixel_calibration import (
-    galaxy_counts_with_pixel_calibration as GalaxyCounts_0ptErrors,
-)
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.masking_algorithm_generalized import (
-    masking_algorithm_generalized,
-)
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.num_obs_metric import NumObsMetric
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.save_bundle_data_npz_format import (
-    save_bundle_data_npz_format,
-)
-
+from matplotlib.ticker import FuncFormatter
 from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import (
-    power_law_const_a,
-    plot_color,
-)
+    plot_color, power_law_const_a)
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.galaxy_counts_metric_extended import \
+    GalaxyCountsMetricExtended as GalaxyCountsMetric
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.galaxy_counts_with_pixel_calibration import \
+    galaxy_counts_with_pixel_calibration as GalaxyCounts_0ptErrors
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.masking_algorithm_generalized import \
+    masking_algorithm_generalized
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.num_obs_metric import \
+    NumObsMetric
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.save_bundle_data_npz_format import \
+    save_bundle_data_npz_format
 
 __all__ = ["artificial_structure_calculation"]
 

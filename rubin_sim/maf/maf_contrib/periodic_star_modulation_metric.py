@@ -1,10 +1,11 @@
-import warnings
-import numpy as np
-from scipy.optimize import curve_fit
 import random
+import warnings
 
+import numpy as np
 from rubin_sim.maf.metrics.base_metric import BaseMetric
 from rubin_sim.maf.utils import m52snr
+from scipy.optimize import curve_fit
+
 from .periodic_star_metric import PeriodicStar
 
 __all__ = ["PeriodicStarModulationMetric"]

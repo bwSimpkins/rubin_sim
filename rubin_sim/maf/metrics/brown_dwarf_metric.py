@@ -1,9 +1,9 @@
-import numpy as np
 import healpy as hp
-from .base_metric import BaseMetric
+import numpy as np
 import rubin_sim.maf.utils as mafUtils
 from scipy import interpolate
 
+from .base_metric import BaseMetric
 
 __all__ = ["BDParallaxMetric", "VolumeSumMetric"]
 

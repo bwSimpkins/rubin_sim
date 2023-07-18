@@ -1,8 +1,9 @@
 from types import MethodType
+
 import numpy as np
-from rubin_sim.maf.maps.galactic_plane_priority_maps import (
-    gp_priority_map_components_to_keys,
-)
+from rubin_sim.maf.maps.galactic_plane_priority_maps import \
+    gp_priority_map_components_to_keys
+
 from .base_metric import BaseMetric
 
 __all__ = [

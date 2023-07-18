@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
-import os
-import glob
 import argparse
-import numpy as np
+import glob
+import os
+
 import matplotlib
+import numpy as np
 
 matplotlib.use("Agg")
 

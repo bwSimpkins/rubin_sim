@@ -5,24 +5,22 @@
 # pylint: disable=too-many-instance-attributes
 # pylint: disable=too-few-public-methods
 
+import calendar
 # imports
 import copy
-import calendar
 import logging
 from collections import OrderedDict
 
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-
-from astropy import units as u
 import astropy.coordinates
 import astropy.time
-
-from rubin_sim.maf.plots import BasePlotter
-from rubin_sim.utils.riseset import riseset_times
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from astropy import units as u
+from .plot_handler import BasePlotter
 from rubin_sim.utils.ddf_locations import ddf_locations
+from rubin_sim.utils.riseset import riseset_times
 
 # constants
 

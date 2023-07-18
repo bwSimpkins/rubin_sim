@@ -1,19 +1,20 @@
 from __future__ import print_function
-import numpy as np
-import matplotlib.pylab as plt
-import rubin_sim.maf.db as db
-import rubin_sim.maf.metrics as metrics
-import rubin_sim.maf.slicers as slicers
-import rubin_sim.maf.metricBundles as metricBundles
-from rubin_sim.maf.metrics import BaseMetric
-from .calc_expected_visits import CalcExpectedVisitsMetric
-import numpy as np
+
+from sys import argv
 
 # from astropy.visualization import astropy_mpl_style
 # plt.style.use(astropy_mpl_style)
 import astropy.units as u
+import matplotlib.pylab as plt
+import numpy as np
+import rubin_sim.maf.db as db
+import rubin_sim.maf.metricBundles as metricBundles
+import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.slicers as slicers
 from astropy.time import Time, TimeDelta
-from sys import argv
+from rubin_sim.maf.metrics import BaseMetric
+
+from .calc_expected_visits import CalcExpectedVisitsMetric
 
 
 class CadenceOverVisibilityWindowMetric(BaseMetric):

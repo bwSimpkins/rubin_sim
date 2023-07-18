@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
+import argparse
 import glob
 import os
-import argparse
-import numpy as np
-import pandas as pd
 import sqlite3
 
+import numpy as np
+import pandas as pd
 
 __all__ = ["combine_result_dbs", "gather_summaries"]
 

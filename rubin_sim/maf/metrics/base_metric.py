@@ -6,11 +6,12 @@
 #  is that these vectors may be expensive to compute; by keeping/writing the full
 #  vector we permit multiple 'reduce' functions to be executed on the same data.
 
-import numpy as np
 import inspect
+import warnings
+
+import numpy as np
 from rubin_sim.maf.stackers.get_col_info import ColInfo
 from six import with_metaclass
-import warnings
 
 __all__ = ["MetricRegistry", "BaseMetric", "ColRegistry"]
 

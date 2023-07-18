@@ -1,13 +1,15 @@
 from __future__ import absolute_import
-from builtins import object
-import numpy as np
-import healpy as hp
-from rubin_sim.scheduler import utils
-from rubin_sim.utils import m5_flat_sed, ra_dec2_hpid, calc_season, _hpid2_ra_dec
-from rubin_sim.skybrightness_pre import dark_sky
-from rubin_sim.scheduler.utils import IntRounded
-from scipy.stats import binned_statistic
 
+from builtins import object
+
+import healpy as hp
+import numpy as np
+from rubin_sim.scheduler import utils
+from rubin_sim.scheduler.utils import IntRounded
+from rubin_sim.skybrightness_pre import dark_sky
+from rubin_sim.utils import (_hpid2_ra_dec, calc_season, m5_flat_sed,
+                             ra_dec2_hpid)
+from scipy.stats import binned_statistic
 
 __all__ = [
     "BaseFeature",

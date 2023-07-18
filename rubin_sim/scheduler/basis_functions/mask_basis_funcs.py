@@ -1,10 +1,9 @@
-import numpy as np
 import healpy as hp
-from rubin_sim.utils import _hpid2_ra_dec, Site, _angular_separation
 import matplotlib.pylab as plt
+import numpy as np
 from rubin_sim.scheduler.basis_functions import BaseBasisFunction
 from rubin_sim.scheduler.utils import HpInLsstFov, IntRounded
-
+from rubin_sim.utils import Site, _angular_separation, _hpid2_ra_dec
 
 __all__ = [
     "SolarElongMaskBasisFunction",

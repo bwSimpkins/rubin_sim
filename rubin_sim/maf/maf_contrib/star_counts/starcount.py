@@ -5,14 +5,15 @@
 # Last edited 8/15/2015
 # Description: Calculates the number of stars in a given direction and between a given set of distances. For use with Field Star Count metric
 
-from __future__ import print_function
-from __future__ import absolute_import
-import numpy as np
-import sys
-from scipy.optimize import fsolve
+from __future__ import absolute_import, print_function
+
 import math
-from . import stellardensity
-from . import coords
+import sys
+
+import numpy as np
+from scipy.optimize import fsolve
+
+from . import coords, stellardensity
 
 # from rubin_sim.coordUtils import AstronomyBase
 skyarea = 41253.0

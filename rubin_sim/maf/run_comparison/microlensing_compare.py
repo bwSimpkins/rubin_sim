@@ -1,9 +1,9 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import warnings
-
 import glob
 import os
+import warnings
+
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import rubin_sim.maf.db as db
 import rubin_sim.maf.metric_bundles as metricBundles

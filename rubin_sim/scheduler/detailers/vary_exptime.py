@@ -1,7 +1,7 @@
-from rubin_sim.scheduler.detailers import BaseDetailer
-from rubin_sim.utils import ra_dec2_hpid, m5_flat_sed
-import numpy as np
 import healpy as hp
+import numpy as np
+from rubin_sim.scheduler.detailers import BaseDetailer
+from rubin_sim.utils import m5_flat_sed, ra_dec2_hpid
 
 __all__ = ["VaryExptDetailer", "calc_target_m5s"]
 

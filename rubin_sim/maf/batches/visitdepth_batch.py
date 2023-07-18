@@ -1,14 +1,17 @@
 """Sets of metrics to look at general sky coverage - nvisits/coadded depth/Teff.
 """
-import numpy as np
 import copy
+
+import numpy as np
+import rubin_sim.maf.metric_bundles as mb
 import rubin_sim.maf.metrics as metrics
 import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as stackers
-import rubin_sim.maf.metric_bundles as mb
 import rubin_sim.maf.utils as mafUtils
+
 from .col_map_dict import col_map_dict, get_col_map
-from .common import standard_summary, filter_list, radec_cols, combine_info_labels
+from .common import (combine_info_labels, filter_list, radec_cols,
+                     standard_summary)
 
 __all__ = ["nvisitsM5Maps", "tEffMetrics", "nvisitsPerNight", "nvisitsPerSubset"]
 

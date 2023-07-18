@@ -1,10 +1,11 @@
-from builtins import zip
-from builtins import range
-import numpy as np
+from builtins import range, zip
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib import colors
-from .plot_handler import BasePlotter
+
 from .perceptual_rainbow import make_pr_cmap
+from .plot_handler import BasePlotter
 
 __all__ = ["TwoDSubsetData", "OneDSubsetData"]
 

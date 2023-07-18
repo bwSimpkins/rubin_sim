@@ -1,4 +1,5 @@
 import numpy as np
+
 from .base_metric import BaseMetric
 
 # Metrics for dealing with things from the SlewActivities table

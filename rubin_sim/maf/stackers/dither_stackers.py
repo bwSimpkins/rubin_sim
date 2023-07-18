@@ -1,8 +1,9 @@
-from builtins import zip
-from builtins import range
-import numpy as np
-from .base_stacker import BaseStacker
 import warnings
+from builtins import range, zip
+
+import numpy as np
+
+from .base_stacker import BaseStacker
 
 __all__ = [
     "setup_dither_stackers",

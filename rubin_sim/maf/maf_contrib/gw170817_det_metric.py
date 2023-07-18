@@ -6,6 +6,7 @@
 # Contact for this code:
 # christian.setzer@fysik.su.se
 from pathlib import Path
+
 from .transient_ascii_sed_metric import TransientAsciiSEDMetric
 
 __all__ = ["GW170817DetMetric"]

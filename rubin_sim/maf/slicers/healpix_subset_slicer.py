@@ -1,19 +1,16 @@
 """A HealpixSubsetSlicer - define the subset of healpixels to use to calculate metrics."""
 
-from functools import wraps
-import numpy as np
-import healpy as hp
 import warnings
-import rubin_sim.utils as simsUtils
+from functools import wraps
 
-from rubin_sim.maf.plots.spatial_plotters import (
-    HealpixSkyMap,
-    HealpixHistogram,
-    HealpixPowerSpectrum,
-)
+import healpy as hp
+import numpy as np
+import rubin_sim.utils as simsUtils
+from rubin_sim.maf.plots.spatial_plotters import (HealpixHistogram,
+                                                  HealpixPowerSpectrum,
+                                                  HealpixSkyMap)
 
 from .healpix_slicer import HealpixSlicer
-
 
 __all__ = ["HealpixSubsetSlicer"]
 

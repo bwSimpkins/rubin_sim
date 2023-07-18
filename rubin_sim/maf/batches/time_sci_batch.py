@@ -1,12 +1,14 @@
 """Sets of metrics to look at impact of cadence on science
 """
 import numpy as np
-import rubin_sim.maf.metrics as metrics
-import rubin_sim.maf.slicers as slicers
-import rubin_sim.maf.plots as plots
 import rubin_sim.maf.metric_bundles as mb
+import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
+import rubin_sim.maf.slicers as slicers
+
 from .col_map_dict import col_map_dict
-from .common import standard_summary, filter_list, combine_info_labels, radec_cols
+from .common import (combine_info_labels, filter_list, radec_cols,
+                     standard_summary)
 
 __all__ = ["phaseGap"]
 

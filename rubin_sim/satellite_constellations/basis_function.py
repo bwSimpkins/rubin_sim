@@ -1,7 +1,6 @@
+import healpy as hp
 import numpy as np
 import rubin_sim.scheduler.basis_functions as bf
-import healpy as hp
-
 
 __all__ = ["SatelliteAvoidBasisFunction"]
 

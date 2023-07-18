@@ -3,9 +3,10 @@ In addition, these supports the time delay metric calculation for strong lensing
 """
 
 import numpy as np
-from .base_metric import BaseMetric
 from rubin_sim.phot_utils import DustValues
 from rubin_sim.utils import calc_season
+
+from .base_metric import BaseMetric
 
 __all__ = [
     "find_season_edges",

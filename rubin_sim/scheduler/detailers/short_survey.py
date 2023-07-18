@@ -1,10 +1,10 @@
-from rubin_sim.scheduler.detailers import BaseDetailer
-from rubin_sim.utils import survey_start_mjd
-import rubin_sim.scheduler.features as features
-from rubin_sim.scheduler.utils import HpInLsstFov
-import numpy as np
 import healpy as hp
 import matplotlib.pylab as plt
+import numpy as np
+import rubin_sim.scheduler.features as features
+from rubin_sim.scheduler.detailers import BaseDetailer
+from rubin_sim.scheduler.utils import HpInLsstFov
+from rubin_sim.utils import survey_start_mjd
 
 __all__ = ["ShortExptDetailer"]
 

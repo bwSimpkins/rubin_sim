@@ -1,8 +1,10 @@
+import warnings
 from builtins import str
+
+import numpy as np
+
 from .base_metric import BaseMetric
 from .simple_metrics import Coaddm5Metric
-import numpy as np
-import warnings
 
 __all__ = ["OptimalM5Metric"]
 

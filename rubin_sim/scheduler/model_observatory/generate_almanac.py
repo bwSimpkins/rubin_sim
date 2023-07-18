@@ -1,6 +1,6 @@
+import astropy.units as u
 import numpy as np
 from astroplan import Observer
-import astropy.units as u
 from astropy.time import Time
 from rubin_sim.utils import Site
 

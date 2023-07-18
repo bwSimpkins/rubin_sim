@@ -1,9 +1,8 @@
 import numpy as np
-from rubin_sim.utils import Site
-from astropy.coordinates import get_sun, get_moon, EarthLocation, AltAz
+from astropy.coordinates import AltAz, EarthLocation, get_moon, get_sun
 from astropy.time import Time
-from scipy.optimize import minimize, Bounds
-
+from rubin_sim.utils import Site
+from scipy.optimize import Bounds, minimize
 
 __all__ = ["generate_nights"]
 

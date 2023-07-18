@@ -1,6 +1,6 @@
-from rubin_sim.maf.stackers import BaseStacker
 import numpy as np
 import numpy.lib.recfunctions as rf
+from rubin_sim.maf.stackers import BaseStacker
 
 __all__ = ["CoaddStacker"]
 

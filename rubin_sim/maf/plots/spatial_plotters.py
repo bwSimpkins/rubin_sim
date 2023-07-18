@@ -1,22 +1,21 @@
-import numbers
 import copy
-import numpy as np
+import numbers
 import warnings
+
 import healpy as hp
-from matplotlib import colors
-from matplotlib import ticker
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-from matplotlib.ticker import FuncFormatter
 import matplotlib as mpl
-from matplotlib.patches import Ellipse
+import matplotlib.cm as cm
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import colors, ticker
 from matplotlib.collections import PatchCollection
-
+from matplotlib.patches import Ellipse
+from matplotlib.ticker import FuncFormatter
 from rubin_sim.maf.utils import optimal_bins, percentile_clipping
-from .plot_handler import BasePlotter, apply_zp_norm
-
 from rubin_sim.utils import _equatorial_from_galactic, _healbin
+
 from .perceptual_rainbow import make_pr_cmap
+from .plot_handler import BasePlotter, apply_zp_norm
 
 perceptual_rainbow = make_pr_cmap()
 import numpy.ma as ma

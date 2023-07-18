@@ -1,4 +1,5 @@
 from scipy import fftpack
+
 from .base_metric import BaseMetric
 
 __all__ = ["FftMetric"]

@@ -5,7 +5,7 @@ To date (30 October 2014) testPhotometry.py and testCosmology.py import from thi
 """
 
 import numpy
-from rubin_sim.phot_utils import calc_sky_counts_per_pixel_for_m5, Sed
+from rubin_sim.phot_utils import Sed, calc_sky_counts_per_pixel_for_m5
 
 __all__ = ["set_m5", "comoving_distance_integrand", "cosmological_omega"]
 

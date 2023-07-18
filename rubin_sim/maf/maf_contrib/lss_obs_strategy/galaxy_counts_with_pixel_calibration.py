@@ -11,14 +11,12 @@
 #
 # Humna Awan: humna.awan@rutgers.edu
 #####################################################################################################
+import warnings
+
 import numpy as np
 import scipy
-import warnings
 from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import (
-    power_law_const_a,
-    power_law_const_b,
-    normalization_constant,
-)
+    normalization_constant, power_law_const_a, power_law_const_b)
 
 __all__ = ["galaxy_counts_with_pixel_calibration"]
 

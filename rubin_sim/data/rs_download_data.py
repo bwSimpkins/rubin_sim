@@ -1,13 +1,14 @@
 #!/usr/bin/env python
+import argparse
 import os
 import warnings
+from shutil import rmtree, unpack_archive
+
 import requests
 from requests.exceptions import ConnectionError
-import argparse
 from tqdm.auto import tqdm
-from shutil import unpack_archive, rmtree
 
-from .data_sets import get_data_dir, data_versions
+from .data_sets import data_versions, get_data_dir
 
 DEFAULT_DATA_URL = "https://s3df.slac.stanford.edu/data/rubin/sim-data/rubin_sim_data/"
 BACKUP_DATA_URL = (

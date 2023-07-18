@@ -1,25 +1,26 @@
+import os
+import pickle
+import warnings
+from itertools import combinations
+
+import healpy as hp
 import numpy as np
 import pandas as pd
 import rubin_sim.maf.metrics as metrics
 import rubin_sim.maf.slicers as slicers
-import healpy as hp
-import os
-from .kne_metrics import KnLc
-from itertools import combinations
-import pickle
-import warnings
-from rubin_sim.utils import uniform_sphere, survey_start_mjd
-from rubin_sim.phot_utils import DustValues
 from rubin_sim.data import get_data_dir
+from rubin_sim.phot_utils import DustValues
+from rubin_sim.utils import survey_start_mjd, uniform_sphere
 
+from .kne_metrics import KnLc
 
 __all__ = ["PrestoColorKNePopMetric", "generate_presto_pop_slicer"]
 
 
 def radec2gal(ra, dec):
     """convert from ra/dec to galactic l/b"""
-    from astropy.coordinates import SkyCoord
     from astropy import units as u
+    from astropy.coordinates import SkyCoord
 
     c = SkyCoord(ra=ra, dec=dec, unit=(u.degree, u.degree))
 

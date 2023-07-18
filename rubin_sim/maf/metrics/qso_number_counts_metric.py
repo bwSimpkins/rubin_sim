@@ -1,9 +1,10 @@
 import os
-import numpy as np
-from scipy import interpolate
-import healpy as hp
 
+import healpy as hp
+import numpy as np
 from rubin_sim.data import get_data_dir
+from scipy import interpolate
+
 from .base_metric import BaseMetric
 from .exgal_m5 import ExgalM5
 

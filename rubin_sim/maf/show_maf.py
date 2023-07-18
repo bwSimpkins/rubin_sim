@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 
-import os
 import argparse
-from tornado import ioloop
-from tornado import web
-from jinja2 import Environment
-from jinja2 import FileSystemLoader
+import os
 import webbrowser
 
-from rubin_sim.maf.web import MafTracking
-from rubin_sim.maf.db import add_run_to_database
 import rubin_sim
+from jinja2 import Environment, FileSystemLoader
+from rubin_sim.maf.db import add_run_to_database
+from rubin_sim.maf.web import MafTracking
+from tornado import ioloop, web
 
 
 class RunSelectHandler(web.RequestHandler):

@@ -1,9 +1,11 @@
+from builtins import str
+
 import numpy as np
-from .base_metric import BaseMetric
 import rubin_sim.maf.utils as mafUtils
 import rubin_sim.utils as utils
 from scipy.optimize import curve_fit
-from builtins import str
+
+from .base_metric import BaseMetric
 
 __all__ = [
     "ParallaxMetric",

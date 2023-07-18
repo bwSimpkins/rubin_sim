@@ -1,35 +1,29 @@
-import numpy as np
-import matplotlib.pylab as plt
-import healpy as hp
-from rubin_sim.scheduler.model_observatory import ModelObservatory
-from rubin_sim.scheduler.schedulers import CoreScheduler, FilterSchedUzy
-from rubin_sim.scheduler.utils import (
-    EuclidOverlapFootprint,
-    ConstantFootprint,
-    make_rolling_footprints,
-)
-import rubin_sim.scheduler.basis_functions as bf
-from rubin_sim.scheduler.surveys import (
-    GreedySurvey,
-    BlobSurvey,
-    ScriptedSurvey,
-    LongGapSurvey,
-    generate_ddf_scheduled_obs,
-)
-from rubin_sim.scheduler import sim_runner
-import rubin_sim.scheduler.detailers as detailers
-import sys
-import subprocess
-import os
 import argparse
-from astropy.coordinates import SkyCoord
-from astropy import units as u
-from rubin_sim.utils import _hpid2_ra_dec
-import rubin_sim
+import os
+import subprocess
+import sys
 import warnings
 
+import healpy as hp
+import matplotlib.pylab as plt
+import numpy as np
+import rubin_sim
+import rubin_sim.scheduler.basis_functions as bf
+import rubin_sim.scheduler.detailers as detailers
+from astropy import units as u
+from astropy.coordinates import SkyCoord
 # So things don't fail on hyak
 from astropy.utils import iers
+from rubin_sim.scheduler import sim_runner
+from rubin_sim.scheduler.model_observatory import ModelObservatory
+from rubin_sim.scheduler.schedulers import CoreScheduler, FilterSchedUzy
+from rubin_sim.scheduler.surveys import (BlobSurvey, GreedySurvey,
+                                         LongGapSurvey, ScriptedSurvey,
+                                         generate_ddf_scheduled_obs)
+from rubin_sim.scheduler.utils import (ConstantFootprint,
+                                       EuclidOverlapFootprint,
+                                       make_rolling_footprints)
+from rubin_sim.utils import _hpid2_ra_dec
 
 iers.conf.auto_download = False
 

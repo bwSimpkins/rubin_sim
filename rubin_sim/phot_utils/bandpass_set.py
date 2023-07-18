@@ -39,10 +39,12 @@
  or plotting the filters (i.e. plotFilters). 
 """
 
-import os
 import copy
-import numpy as np
+import os
+
 import matplotlib.pyplot as plt
+import numpy as np
+
 from .bandpass import Bandpass
 from .sed import Sed
 

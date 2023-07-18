@@ -1,11 +1,9 @@
-from rubin_sim.utils import (
-    _approx_ra_dec2_alt_az,
-    _angular_separation,
-    _approx_altaz2pa,
-)
+import copy
+
 import numpy as np
 from rubin_sim.scheduler.utils import IntRounded
-import copy
+from rubin_sim.utils import (_angular_separation, _approx_altaz2pa,
+                             _approx_ra_dec2_alt_az)
 
 __all__ = [
     "BaseDetailer",

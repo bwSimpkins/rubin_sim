@@ -1,22 +1,15 @@
-import numpy as np
-from rubin_sim.scheduler.utils import empty_observation, set_default_nside
+import warnings
+from copy import copy
+
 import healpy as hp
 import matplotlib.pylab as plt
+import numpy as np
 from rubin_sim.scheduler.surveys import BaseMarkovSurvey
-from rubin_sim.scheduler.utils import (
-    int_binned_stat,
-    IntRounded,
-    gnomonic_project_toxy,
-    tsp_convex,
-)
-from copy import copy
-from rubin_sim.utils import (
-    _angular_separation,
-    _hpid2_ra_dec,
-    _approx_ra_dec2_alt_az,
-    hp_grow_argsort,
-)
-import warnings
+from rubin_sim.scheduler.utils import (IntRounded, empty_observation,
+                                       gnomonic_project_toxy, int_binned_stat,
+                                       set_default_nside, tsp_convex)
+from rubin_sim.utils import (_angular_separation, _approx_ra_dec2_alt_az,
+                             _hpid2_ra_dec, hp_grow_argsort)
 
 __all__ = ["GreedySurvey", "BlobSurvey"]
 

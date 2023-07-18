@@ -2,10 +2,9 @@
 # Keaton Bell (keatonb@astro.as.utexas.edu)
 
 import numpy as np
-from scipy.stats import chi2
-from scipy.interpolate import UnivariateSpline
-
 from rubin_sim.maf.metrics import BaseMetric
+from scipy.interpolate import UnivariateSpline
+from scipy.stats import chi2
 
 __all__ = ["VarDepth"]
 

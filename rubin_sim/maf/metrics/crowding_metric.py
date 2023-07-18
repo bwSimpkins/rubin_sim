@@ -1,7 +1,7 @@
-import numpy as np
-from scipy.interpolate import interp1d
-from rubin_sim.maf.metrics import BaseMetric
 import healpy as hp
+import numpy as np
+from rubin_sim.maf.metrics import BaseMetric
+from scipy.interpolate import interp1d
 
 # Modifying from Knut Olson's fork at:
 # https://github.com/knutago/sims_maf_contrib/blob/master/tutorials/CrowdingMetric.ipynb

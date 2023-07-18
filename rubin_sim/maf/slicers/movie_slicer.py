@@ -1,15 +1,15 @@
-from builtins import str
-
 # cumulative one dimensional movie slicer
 import os
-import warnings
 import subprocess
-from subprocess import CalledProcessError
-import numpy as np
+import warnings
+from builtins import str
 from functools import wraps
+from subprocess import CalledProcessError
 
-from rubin_sim.maf.utils import optimal_bins
+import numpy as np
 from rubin_sim.maf.stackers import ColInfo
+from rubin_sim.maf.utils import optimal_bins
+
 from .base_slicer import BaseSlicer
 
 __all__ = ["MovieSlicer"]

@@ -1,8 +1,8 @@
 import numpy
-from .sed import Sed
-from .photometric_parameters import PhotometricParameters
-from . import lsst_defaults
 
+from . import lsst_defaults
+from .photometric_parameters import PhotometricParameters
+from .sed import Sed
 
 __all__ = [
     "fwhm_eff2_fwhm_geom",

@@ -1,22 +1,14 @@
 from io import StringIO
+
+import healpy as hp
 import numpy as np
 import pandas as pd
-from rubin_sim.utils import (
-    _approx_ra_dec2_alt_az,
-    Site,
-    _hpid2_ra_dec,
-    m5_flat_sed,
-    _approx_altaz2pa,
-    _angular_separation,
-)
-import healpy as hp
-from rubin_sim.scheduler.utils import (
-    set_default_nside,
-    match_hp_resolution,
-    season_calc,
-    smallest_signed_angle,
-)
-from rubin_sim.utils import calc_lmst_last
+from rubin_sim.scheduler.utils import (match_hp_resolution, season_calc,
+                                       set_default_nside,
+                                       smallest_signed_angle)
+from rubin_sim.utils import (Site, _angular_separation, _approx_altaz2pa,
+                             _approx_ra_dec2_alt_az, _hpid2_ra_dec,
+                             calc_lmst_last, m5_flat_sed)
 
 __all__ = ["Conditions"]
 

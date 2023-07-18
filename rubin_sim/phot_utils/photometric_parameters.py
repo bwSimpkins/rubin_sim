@@ -1,5 +1,5 @@
 import numpy as np
-from rubin_sim.phot_utils import Sed, BandpassDict
+from rubin_sim.phot_utils import BandpassDict, Sed
 
 __all__ = ["PhotometricParameters", "DustValues"]
 

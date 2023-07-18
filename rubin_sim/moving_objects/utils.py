@@ -1,6 +1,8 @@
-import os
 import logging
+import os
+
 from rubin_sim.maf.utils import get_sim_data
+
 from .orbits import Orbits
 
 __all__ = ["read_observations"]

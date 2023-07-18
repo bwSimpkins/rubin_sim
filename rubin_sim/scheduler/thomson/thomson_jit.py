@@ -1,8 +1,7 @@
 import numpy as np
-from scipy.optimize import minimize
-from rubin_sim.utils import _angular_separation
 from numba import jit
-
+from rubin_sim.utils import _angular_separation
+from scipy.optimize import minimize
 
 __all__ = [
     "thetaphi2xyz",

@@ -1,14 +1,10 @@
 import numpy as np
-from rubin_sim.utils import (
-    gnomonic_project_toxy,
-    Site,
-    survey_start_mjd,
-    point_to_line_distance,
-)
-from skyfield.api import load, wgs84, EarthSatellite
-from astropy import units as u
 from astropy import constants as const
+from astropy import units as u
+from rubin_sim.utils import (Site, gnomonic_project_toxy,
+                             point_to_line_distance, survey_start_mjd)
 from shapely.geometry import LineString, Point
+from skyfield.api import EarthSatellite, load, wgs84
 
 __all__ = [
     "create_constellation",

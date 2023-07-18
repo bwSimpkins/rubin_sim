@@ -1,11 +1,12 @@
-import warnings
-import sys
-import numpy as np
-from rubin_sim.scheduler.utils import run_info_table, SchemaConverter
-from rubin_sim.scheduler.schedulers import SimpleFilterSched
-import time
 import sqlite3
+import sys
+import time
+import warnings
+
+import numpy as np
 import pandas as pd
+from rubin_sim.scheduler.schedulers import SimpleFilterSched
+from rubin_sim.scheduler.utils import SchemaConverter, run_info_table
 
 __all__ = ["sim_runner"]
 

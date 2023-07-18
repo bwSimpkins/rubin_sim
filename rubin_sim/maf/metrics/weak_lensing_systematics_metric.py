@@ -1,7 +1,8 @@
 import numpy as np
-from .vector_metrics import VectorMetric
+
 from .base_metric import BaseMetric
 from .exgal_m5 import ExgalM5
+from .vector_metrics import VectorMetric
 
 __all__ = ["ExgalM5WithCuts", "WeakLensingNvisits", "RIZDetectionCoaddExposureTime"]
 

@@ -1,10 +1,11 @@
 from builtins import zip
 
+import numpy as np
+import rubin_sim.maf.metrics as metrics
+
 # Gamma-ray burst afterglow metric
 # ebellm@caltech.edu
 
-import rubin_sim.maf.metrics as metrics
-import numpy as np
 
 __all__ = ["GRBTransientMetric"]
 

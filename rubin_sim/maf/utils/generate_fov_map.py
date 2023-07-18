@@ -33,9 +33,9 @@ def gnomonic_project_tosky(x, y, r_acen, deccen):
 
 
 if __name__ == "__main__":
-    from lsst.sims.coordUtils import _chipNameFromRaDec
-    from lsst.obs.lsst import LsstCamMapper
     import lsst.sims.utils as simsUtils
+    from lsst.obs.lsst import LsstCamMapper
+    from lsst.sims.coordUtils import _chipNameFromRaDec
 
     mapper = LsstCamMapper()
     camera = mapper.camera

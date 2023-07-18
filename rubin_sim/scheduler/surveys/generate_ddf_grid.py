@@ -1,17 +1,15 @@
-import numpy as np
-import healpy as hp
-from rubin_sim.utils import ddf_locations
-import rubin_sim.skybrightness as sb
-from rubin_sim.utils import m5_flat_sed
-from rubin_sim.site_models.seeing_model import SeeingModel
-import sys
-from astroplan import Observer
-import astropy.units as u
-from astropy.time import Time
-from rubin_sim.utils import Site
-from rubin_sim.data import get_data_dir
 import os
+import sys
 
+import astropy.units as u
+import healpy as hp
+import numpy as np
+import rubin_sim.skybrightness as sb
+from astroplan import Observer
+from astropy.time import Time
+from rubin_sim.data import get_data_dir
+from rubin_sim.site_models.seeing_model import SeeingModel
+from rubin_sim.utils import Site, ddf_locations, m5_flat_sed
 
 if __name__ == "__main__":
     # Generate a grid of airmass skybrightness values

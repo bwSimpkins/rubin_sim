@@ -4,13 +4,13 @@
 # See more documentation on healpy here http://healpy.readthedocs.org/en/latest/tutorial.html
 # Also requires numpy (for histogram and power spectrum plotting)
 
-import numpy as np
 import healpy as hp
-from rubin_sim.maf.plots.spatial_plotters import HealpixSkyMap, HealpixHistogram
+import numpy as np
+from rubin_sim.maf.plots.spatial_plotters import (HealpixHistogram,
+                                                  HealpixSkyMap)
 from rubin_sim.utils import _galactic_from_equatorial
 
 from .base_spatial_slicer import BaseSpatialSlicer
-
 
 __all__ = ["HealpixSlicer"]
 

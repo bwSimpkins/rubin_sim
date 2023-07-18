@@ -1,11 +1,9 @@
-import numpy as np
 import healpy as hp
-from scipy.optimize import minimize
-
+import numpy as np
 import pandas as pd
-from sklearn.preprocessing import StandardScaler
 from rubin_sim.maf.metrics.base_metric import BaseMetric
-
+from scipy.optimize import minimize
+from sklearn.preprocessing import StandardScaler
 
 __all__ = ["StaticProbesFoMEmulatorMetric"]
 

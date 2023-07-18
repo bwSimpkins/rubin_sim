@@ -1,12 +1,12 @@
-from rubin_sim.scheduler.surveys import BlobSurvey
-from rubin_sim.scheduler import features
-import rubin_sim.scheduler.basis_functions as bfs
-import numpy as np
-from rubin_sim.scheduler.utils import empty_observation, set_default_nside
-import healpy as hp
 from copy import copy
-import matplotlib.pylab as plt
 
+import healpy as hp
+import matplotlib.pylab as plt
+import numpy as np
+import rubin_sim.scheduler.basis_functions as bfs
+from rubin_sim.scheduler import features
+from .surveys import BlobSurvey
+from rubin_sim.scheduler.utils import empty_observation, set_default_nside
 
 __all__ = ["PlanAheadSurvey"]
 

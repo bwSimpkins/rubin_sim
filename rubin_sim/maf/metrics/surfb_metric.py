@@ -1,9 +1,10 @@
-import numpy as np
-from .base_metric import BaseMetric
-from rubin_sim.maf.utils import load_inst_zeropoints
-
 import os
 import warnings
+
+import numpy as np
+from rubin_sim.maf.utils import load_inst_zeropoints
+
+from .base_metric import BaseMetric
 
 __all__ = ["SurfaceBrightLimitMetric"]
 

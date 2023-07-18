@@ -1,24 +1,21 @@
 from __future__ import absolute_import
+
+import logging
 import reprlib
-from collections import OrderedDict
-from io import StringIO
 import time
-from copy import deepcopy
 from builtins import object
-import numpy as np
+from collections import OrderedDict
+from copy import deepcopy
+from io import StringIO
+
 import healpy as hp
+import numpy as np
 import pandas as pd
 from astropy.time import Time
-from rubin_sim.utils import _hpid2_ra_dec
-from rubin_sim.scheduler.utils import (
-    HpInLsstFov,
-    set_default_nside,
-    HpInComcamFov,
-    IntRounded,
-)
-from rubin_sim.utils import _approx_ra_dec2_alt_az, _approx_altaz2pa
-import logging
-
+from rubin_sim.scheduler.utils import (HpInComcamFov, HpInLsstFov, IntRounded,
+                                       set_default_nside)
+from rubin_sim.utils import (_approx_altaz2pa, _approx_ra_dec2_alt_az,
+                             _hpid2_ra_dec)
 
 __all__ = ["CoreScheduler"]
 

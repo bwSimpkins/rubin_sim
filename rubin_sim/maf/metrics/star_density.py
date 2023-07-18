@@ -1,6 +1,8 @@
 import warnings
-from .base_metric import BaseMetric
+
 from scipy.interpolate import interp1d
+
+from .base_metric import BaseMetric
 
 __all__ = ["StarDensityMetric"]
 

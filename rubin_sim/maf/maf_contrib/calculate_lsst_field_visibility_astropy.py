@@ -4,18 +4,17 @@ Created on Tue Sep 18 13:35:41 2018
 
 @author: rstreet
 """
+import copy
 from sys import argv
-import numpy as np
-import matplotlib.pylab as plt
 
 # from astropy.visualization import astropy_mpl_style
 # plt.style.use(astropy_mpl_style)
 import astropy.units as u
+import matplotlib.pylab as plt
+import numpy as np
+from astropy.coordinates import (AltAz, EarthLocation, SkyCoord, get_moon,
+                                 get_sun)
 from astropy.time import Time, TimeDelta
-from astropy.coordinates import SkyCoord, EarthLocation, AltAz
-from astropy.coordinates import get_sun
-from astropy.coordinates import get_moon
-import copy
 
 __all__ = ["calculate_lsst_field_visibility", "plot_visibility"]
 

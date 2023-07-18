@@ -1,7 +1,9 @@
 import warnings
-import numpy as np
+
 import healpy as hp
+import numpy as np
 from scipy import interpolate
+
 from .base_metric import BaseMetric
 
 # A collection of metrics which are primarily intended to be used as summary statistics.

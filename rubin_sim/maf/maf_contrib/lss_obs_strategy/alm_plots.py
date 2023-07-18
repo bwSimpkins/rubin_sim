@@ -3,10 +3,11 @@
 #
 # Humna Awan: humna.awan@rutgers.edu
 #####################################################################################################
+import os
+
+import healpy as hp
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-import healpy as hp
 
 __all__ = ["alm_plots"]
 

@@ -1,11 +1,12 @@
-import numpy as np
-import healpy as hp
-from .healpix_slicer import HealpixSlicer
 import warnings
 from functools import wraps
-import rubin_sim.utils as simsUtils
-import matplotlib.path as mplPath
 
+import healpy as hp
+import matplotlib.path as mplPath
+import numpy as np
+import rubin_sim.utils as simsUtils
+
+from .healpix_slicer import HealpixSlicer
 
 __all__ = ["HealpixComCamSlicer"]
 

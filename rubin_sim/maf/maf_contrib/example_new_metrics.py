@@ -1,8 +1,8 @@
 # Example of a new metric added to the repo.
 # ljones@astro.washington.edu
 
-from rubin_sim.maf.metrics import BaseMetric
 import numpy as np
+from rubin_sim.maf.metrics import BaseMetric
 
 __all__ = ["NightsWithNFiltersMetric"]
 

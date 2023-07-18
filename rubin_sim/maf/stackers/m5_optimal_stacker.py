@@ -1,7 +1,9 @@
 from __future__ import print_function
+
 import numpy as np
-from .base_stacker import BaseStacker
 from rubin_sim.utils import Site
+
+from .base_stacker import BaseStacker
 from .general_stackers import FiveSigmaStacker
 
 __all__ = ["M5OptimalStacker", "generate_sky_slopes"]
@@ -11,8 +13,8 @@ def generate_sky_slopes():
     """
     Fit a line to how the sky brightness changes with airmass.
     """
-    import rubin_sim.skybrightness as sb
     import healpy as hp
+    import rubin_sim.skybrightness as sb
 
     sm = sb.SkyModel(mags=True, moon=False, twilight=False, zodiacal=False)
     mjd = 57000

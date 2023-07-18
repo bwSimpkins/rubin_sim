@@ -1,9 +1,10 @@
 # Collection of utilities for MAF that relate to Opsim specifically.
 
-import numpy as np
-import pandas as pd
 import os
 import sqlite3
+
+import numpy as np
+import pandas as pd
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.engine import make_url
 

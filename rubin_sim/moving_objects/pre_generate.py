@@ -1,9 +1,9 @@
-import numpy as np
-from rubin_sim.data import get_data_dir
 import glob
 import os
-from rubin_sim.moving_objects import Orbits, DirectObs
 
+import numpy as np
+from rubin_sim.data import get_data_dir
+from rubin_sim.moving_objects import DirectObs, Orbits
 
 if __name__ == "__main__":
     mjd_start = 60676.0

@@ -1,11 +1,10 @@
-import numpy as np
-from rubin_sim.scheduler import features
-from rubin_sim.scheduler import utils
+import warnings
+
 import healpy as hp
 import matplotlib.pylab as plt
-import warnings
+import numpy as np
+from rubin_sim.scheduler import features, utils
 from rubin_sim.scheduler.basis_functions import BaseBasisFunction
-
 
 __all__ = [
     "TargetMapModuloBasisFunction",

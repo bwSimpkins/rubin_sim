@@ -1,18 +1,19 @@
 import os
 import sys
+import warnings
+from collections import OrderedDict
+
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.ma as ma
-import matplotlib.pyplot as plt
-from collections import OrderedDict
-import tqdm
-
-import rubin_sim.maf.utils as utils
-from rubin_sim.maf.plots import PlotHandler
-import rubin_sim.maf.maps as maps
 import rubin_sim.maf.db as db
+import rubin_sim.maf.maps as maps
+import rubin_sim.maf.utils as utils
+import tqdm
+from rubin_sim.maf.plots import PlotHandler
 from rubin_sim.maf.stackers import BaseDitherStacker
+
 from .metric_bundle import MetricBundle, create_empty_metric_bundle
-import warnings
 
 __all__ = ["make_bundles_dict_from_list", "MetricBundleGroup"]
 

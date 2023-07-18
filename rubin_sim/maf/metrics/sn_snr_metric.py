@@ -1,11 +1,12 @@
-import numpy as np
+import time
+from collections.abc import Iterable
+
 import matplotlib.pylab as plt
+import numpy as np
 import numpy.lib.recfunctions as rf
-from scipy import interpolate
 import rubin_sim.maf.metrics as metrics
 from rubin_sim.maf.utils.sn_utils import GenerateFakeObservations
-from collections.abc import Iterable
-import time
+from scipy import interpolate
 
 __all__ = ["SNSNRMetric"]
 

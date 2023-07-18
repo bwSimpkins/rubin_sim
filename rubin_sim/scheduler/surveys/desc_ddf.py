@@ -1,11 +1,11 @@
-import numpy as np
-from rubin_sim.scheduler.surveys import BaseSurvey
 import copy
-import rubin_sim.scheduler.basis_functions as basis_functions
-from rubin_sim.scheduler.utils import empty_observation
-import healpy as hp
 import random
 
+import healpy as hp
+import numpy as np
+import rubin_sim.scheduler.basis_functions as basis_functions
+from rubin_sim.scheduler.surveys import BaseSurvey
+from rubin_sim.scheduler.utils import empty_observation
 
 __all__ = ["DescDdf", "generate_desc_dd_surveys"]
 

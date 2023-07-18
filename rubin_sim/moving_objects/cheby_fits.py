@@ -1,9 +1,11 @@
 import os
 import warnings
+
 import numpy as np
+
 from .chebyshev_utils import chebfit, make_cheb_matrix, make_cheb_matrix_only_x
-from .orbits import Orbits
 from .ooephemerides import PyOrbEphemerides, get_oorb_data_dir
+from .orbits import Orbits
 
 __all__ = ["ChebyFits"]
 

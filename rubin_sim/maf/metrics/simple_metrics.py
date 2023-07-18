@@ -1,4 +1,5 @@
 import numpy as np
+
 from .base_metric import BaseMetric
 
 # A collection of commonly used simple metrics, operating on a single column and returning a float.

@@ -1,12 +1,13 @@
 #!/usr/bin/env python
+import argparse
+import glob
 import os
 import shutil
-import glob
-import argparse
-import matplotlib
 import sqlite3
-import pandas as pd
 import warnings
+
+import matplotlib
+import pandas as pd
 
 matplotlib.use("Agg")
 

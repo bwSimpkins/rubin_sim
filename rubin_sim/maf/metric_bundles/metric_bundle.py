@@ -1,18 +1,17 @@
-from builtins import zip
-from builtins import object
 import os
+import warnings
+from builtins import object, zip
 from copy import deepcopy
+
 import numpy as np
 import numpy.ma as ma
-import warnings
-
+import rubin_sim.maf.maps as maps
 import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
 import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as stackers
-import rubin_sim.maf.maps as maps
-import rubin_sim.maf.plots as plots
-from rubin_sim.maf.stackers import ColInfo
 import rubin_sim.maf.utils as utils
+from rubin_sim.maf.stackers import ColInfo
 
 __all__ = ["MetricBundle", "create_empty_metric_bundle"]
 

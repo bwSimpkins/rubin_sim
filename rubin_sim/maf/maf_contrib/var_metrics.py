@@ -1,12 +1,13 @@
 from __future__ import print_function
 
+import numpy as np
+from rubin_sim.maf.metrics import BaseMetric
+from scipy.signal import lombscargle
+
 # Example of a *very* simple variabiilty metric
 # krughoff@uw.edu, ebellm, ljones
 
-import numpy as np
-from scipy.signal import lombscargle
 
-from rubin_sim.maf.metrics import BaseMetric
 
 __all__ = ["PeriodDeviationMetric"]
 

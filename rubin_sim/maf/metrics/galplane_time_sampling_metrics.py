@@ -4,14 +4,15 @@
 # Author - Rachel Street: rstreet@lco.global
 ################################################################################################
 from types import MethodType
+
 import numpy as np
+from rubin_sim.maf.maps.galactic_plane_priority_maps import \
+    gp_priority_map_components_to_keys
 from rubin_sim.utils import calc_season
-from rubin_sim.maf.maps.galactic_plane_priority_maps import (
-    gp_priority_map_components_to_keys,
-)
+
+from .base_metric import BaseMetric
 from .galactic_plane_metrics import galplane_priority_map_thresholds
 from .season_metrics import find_season_edges
-from .base_metric import BaseMetric
 
 __all__ = [
     "calc_interval_decay",

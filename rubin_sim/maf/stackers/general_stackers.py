@@ -1,9 +1,11 @@
 import warnings
+
 import numpy as np
 import palpy
-from rubin_sim.utils import Site, m5_flat_sed
-from .base_stacker import BaseStacker
 from rubin_sim.maf.utils import load_inst_zeropoints
+from rubin_sim.utils import Site, m5_flat_sed
+
+from .base_stacker import BaseStacker
 
 __all__ = [
     "NormAirmassStacker",

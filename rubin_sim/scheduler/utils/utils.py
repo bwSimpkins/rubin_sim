@@ -1,18 +1,15 @@
-import os
-import sqlite3
 import datetime
+import os
 import socket
-import numpy as np
+import sqlite3
+
 import healpy as hp
-import pandas as pd
 import matplotlib.path as mplPath
-from rubin_sim.utils import (
-    _hpid2_ra_dec,
-    xyz_angular_radius,
-    _build_tree,
-    _xyz_from_ra_dec,
-)
+import numpy as np
+import pandas as pd
 import rubin_sim.version as rsVersion
+from rubin_sim.utils import (_build_tree, _hpid2_ra_dec, _xyz_from_ra_dec,
+                             xyz_angular_radius)
 
 __all__ = [
     "IntRounded",

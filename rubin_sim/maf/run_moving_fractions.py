@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 
-import os
-import glob
 import argparse
-import numpy as np
+import glob
+import os
 
+import numpy as np
+from rubin_sim.utils import survey_start_mjd
+
+from . import batches as batches
 from . import db as db
 from . import metricBundles as mmb
-from . import batches as batches
-from rubin_sim.utils import survey_start_mjd
 
 
 def run_moving_fractions():

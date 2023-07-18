@@ -1,16 +1,19 @@
 from __future__ import print_function
+
 import warnings
+
+import rubin_sim.maf.metric_bundles as metric_bundles
 import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
 import rubin_sim.maf.slicers as slicers
 import rubin_sim.maf.stackers as stackers
-import rubin_sim.maf.plots as plots
-import rubin_sim.maf.metric_bundles as metric_bundles
 from rubin_sim.scheduler.utils import EuclidOverlapFootprint
+from rubin_sim.utils import ddf_locations
+
 from .col_map_dict import col_map_dict
 from .common import standard_summary
-from .slew_batch import slewBasics
 from .hourglass_batch import hourglassPlots
-from rubin_sim.utils import ddf_locations
+from .slew_batch import slewBasics
 
 __all__ = ["glanceBatch"]
 

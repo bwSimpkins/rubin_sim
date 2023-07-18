@@ -1,6 +1,6 @@
 import numpy as np
-import rubin_sim.scheduler.Training as optional
 import rubin_sim.scheduler as fs
+import rubin_sim.scheduler.Training as optional
 from rubin_sim.speedObservatory import Speed_observatory
 
 

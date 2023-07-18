@@ -1,11 +1,11 @@
 import numpy as np
-from rubin_sim.utils import _galactic_from_equatorial, calc_lmst_last
 from astropy import units as u
 from astropy.coordinates import SkyCoord, get_sun
+from astropy.time import Time
+from rubin_sim.utils import _galactic_from_equatorial, calc_lmst_last
+
 from .base_stacker import BaseStacker
 from .dither_stackers import wrap_ra
-from astropy.time import Time
-
 
 __all__ = ["ra_dec2_alt_az", "GalacticStacker", "EclipticStacker"]
 

@@ -1,20 +1,20 @@
-from __future__ import print_function, division
-from copy import deepcopy
+from __future__ import division, print_function
+
 import os
+from copy import deepcopy
+
+import matplotlib.pyplot as plt
 import numpy as np
 import numpy.ma as ma
-import matplotlib.pyplot as plt
-import rubin_sim.maf.metrics as metrics
-import rubin_sim.maf.stackers as stackers
-import rubin_sim.maf.plots as plots
 import rubin_sim.maf.metric_bundles as mb
+import rubin_sim.maf.metrics as metrics
+import rubin_sim.maf.plots as plots
+import rubin_sim.maf.stackers as stackers
 from rubin_sim.maf.metric_bundles import MoMetricBundle
+
 from .col_map_dict import col_map_dict
-from .common import (
-    summary_completeness_at_time,
-    summary_completeness_over_h,
-    fraction_population_at_threshold,
-)
+from .common import (fraction_population_at_threshold,
+                     summary_completeness_at_time, summary_completeness_over_h)
 
 __all__ = [
     "ss_population_defaults",

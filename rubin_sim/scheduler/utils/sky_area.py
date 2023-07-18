@@ -1,16 +1,16 @@
 import os
-import numpy as np
-import healpy as hp
 import warnings
-from astropy.coordinates import SkyCoord
+
 import astropy.units as u
-from rubin_sim.utils import angular_separation
-from rubin_sim import data as rs_data
+import healpy as hp
+import numpy as np
 import rubin_sim.utils as rs_utils
+from astropy.coordinates import SkyCoord
 from numpy.lib import recfunctions as rfn
+from rubin_sim import data as rs_data
+from rubin_sim.utils import angular_separation
 from shapely.geometry import Point
 from shapely.geometry.polygon import Polygon
-
 
 __all__ = ["SkyAreaGenerator", "SkyAreaGeneratorGalplane", "EuclidOverlapFootprint"]
 

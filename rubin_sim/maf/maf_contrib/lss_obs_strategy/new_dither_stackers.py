@@ -11,8 +11,9 @@
 # Last updated: 06/11/16
 ###############################################################################################################
 import numpy as np
-from rubin_sim.maf.stackers import wrap_ra_dec, polygon_coords
-from rubin_sim.maf.stackers import BaseStacker, SpiralDitherFieldPerVisitStacker
+from rubin_sim.maf.stackers import (BaseStacker,
+                                    SpiralDitherFieldPerVisitStacker,
+                                    polygon_coords, wrap_ra_dec)
 from rubin_sim.utils import calc_season
 
 __all__ = [

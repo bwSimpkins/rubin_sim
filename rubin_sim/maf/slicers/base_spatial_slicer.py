@@ -5,10 +5,12 @@
 #  as this uses a KD-tree built on spatial (RA/Dec type) indexes.
 
 import warnings
-import numpy as np
 from functools import wraps
+
+import numpy as np
 import rubin_sim.utils as simsUtils
 from rubin_sim.maf.plots.spatial_plotters import BaseHistogram, BaseSkyMap
+
 from .base_slicer import BaseSlicer
 
 __all__ = ["BaseSpatialSlicer"]

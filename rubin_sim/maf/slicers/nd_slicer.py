@@ -1,16 +1,16 @@
-from builtins import zip
-from builtins import map
-from builtins import range
+import itertools
+import warnings
+from builtins import map, range, zip
+from functools import wraps
+
+import numpy as np
+from rubin_sim.maf.plots.nd_plotters import OneDSubsetData, TwoDSubsetData
+
+from .base_slicer import BaseSlicer
 
 # nd Slicer slices data on N columns in sim_data
 
-import warnings
-import numpy as np
-import itertools
-from functools import wraps
 
-from rubin_sim.maf.plots.nd_plotters import TwoDSubsetData, OneDSubsetData
-from .base_slicer import BaseSlicer
 
 __all__ = ["NDSlicer"]
 

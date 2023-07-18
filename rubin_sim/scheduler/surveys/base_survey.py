@@ -1,20 +1,16 @@
-import numpy as np
-from copy import deepcopy, copy
-import pandas as pd
-from rubin_sim.scheduler.utils import (
-    empty_observation,
-    set_default_nside,
-    HpInLsstFov,
-    HpInComcamFov,
-    comcam_tessellate,
-)
-from rubin_sim.scheduler.basis_functions.mask_basis_funcs import (
-    ZenithShadowMaskBasisFunction,
-)
-from rubin_sim.site_models import _read_fields
+from copy import copy, deepcopy
+
 import healpy as hp
-from rubin_sim.scheduler.thomson import xyz2thetaphi, thetaphi2xyz
+import numpy as np
+import pandas as pd
+from rubin_sim.scheduler.basis_functions.mask_basis_funcs import \
+    ZenithShadowMaskBasisFunction
 from rubin_sim.scheduler.detailers import ZeroRotDetailer
+from rubin_sim.scheduler.thomson import thetaphi2xyz, xyz2thetaphi
+from rubin_sim.scheduler.utils import (HpInComcamFov, HpInLsstFov,
+                                       comcam_tessellate, empty_observation,
+                                       set_default_nside)
+from rubin_sim.site_models import _read_fields
 
 __all__ = ["BaseSurvey", "BaseMarkovSurvey"]
 

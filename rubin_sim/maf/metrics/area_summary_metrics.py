@@ -1,6 +1,7 @@
-import numpy as np
-from .base_metric import BaseMetric
 import healpy as hp
+import numpy as np
+
+from .base_metric import BaseMetric
 
 __all__ = ["AreaSummaryMetric", "AreaThresholdMetric"]
 

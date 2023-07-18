@@ -1,13 +1,11 @@
 import os
-import numpy as np
+
 import healpy as hp
-from rubin_sim.utils import (
-    _hpid2_ra_dec,
-    _equatorial_from_galactic,
-    _build_tree,
-    _xyz_from_ra_dec,
-)
+import numpy as np
 from rubin_sim.data import get_data_dir
+from rubin_sim.utils import (_build_tree, _equatorial_from_galactic,
+                             _hpid2_ra_dec, _xyz_from_ra_dec)
+
 from . import BaseMap
 
 __all__ = ["TrilegalDensityMap"]

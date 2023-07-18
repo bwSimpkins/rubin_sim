@@ -1,11 +1,11 @@
 import os
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.engine import url
-from sqlalchemy.orm import sessionmaker
-
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.exc import DatabaseError
 import warnings
+
+from sqlalchemy import Column, Integer, String, create_engine
+from sqlalchemy.engine import url
+from sqlalchemy.exc import DatabaseError
+from sqlalchemy.orm import declarative_base, sessionmaker
+
 from . import ResultsDb, VersionRow
 
 Base = declarative_base()

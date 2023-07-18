@@ -1,9 +1,10 @@
 # Base class for all 'Slicer' objects.
 #
 import inspect
-from io import StringIO
 import json
 import warnings
+from io import StringIO
+
 import numpy as np
 import numpy.ma as ma
 from rubin_sim.maf.utils import get_date_version

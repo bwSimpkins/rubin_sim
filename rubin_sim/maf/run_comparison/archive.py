@@ -14,11 +14,12 @@ __all__ = [
 ]
 
 
-import warnings
-import sys
-import os
-import urllib
 import copy
+import os
+import sys
+import urllib
+import warnings
+
 import numpy as np
 import pandas as pd
 

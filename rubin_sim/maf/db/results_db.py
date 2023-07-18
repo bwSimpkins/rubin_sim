@@ -1,20 +1,18 @@
-import os, warnings
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.engine import url
-from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column, Integer, String, Float
-from sqlalchemy import ForeignKey
-from sqlalchemy.sql import text
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.exc import DatabaseError
-from sqlite3 import OperationalError
-import rubin_sim.version as rsVersion
 import datetime
+import os
 import time
-
+import warnings
+from sqlite3 import OperationalError
 
 import numpy as np
+import rubin_sim.version as rsVersion
+from sqlalchemy import (Column, Float, ForeignKey, Integer, String,
+                        create_engine)
+from sqlalchemy.engine import url
+from sqlalchemy.exc import DatabaseError
+from sqlalchemy.orm import (backref, declarative_base, relationship,
+                            sessionmaker)
+from sqlalchemy.sql import text
 
 Base = declarative_base()
 

@@ -1,7 +1,8 @@
 import os
-import numpy as np
 import warnings
+
 import matplotlib.pyplot as plt
+import numpy as np
 import rubin_sim.maf.utils as utils
 
 __all__ = ["apply_zp_norm", "PlotHandler", "BasePlotter"]

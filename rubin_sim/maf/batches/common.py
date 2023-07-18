@@ -1,4 +1,5 @@
 from __future__ import print_function
+
 import inspect
 
 import rubin_sim.maf.metrics as metrics

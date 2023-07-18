@@ -2,8 +2,7 @@
 # ljones@astro.washington.edu
 
 import numpy as np
-from rubin_sim.maf.stackers import BaseStacker
-from rubin_sim.maf.stackers import wrapRADec
+from rubin_sim.maf.stackers import BaseStacker, wrapRADec
 
 __all__ = ["YearlyDitherStacker"]
 

@@ -1,8 +1,9 @@
 """Evaluate the open shutter fraction.
 """
+import rubin_sim.maf.metric_bundles as mb
 import rubin_sim.maf.metrics as metrics
 import rubin_sim.maf.slicers as slicers
-import rubin_sim.maf.metric_bundles as mb
+
 from .col_map_dict import col_map_dict
 from .common import standard_summary
 

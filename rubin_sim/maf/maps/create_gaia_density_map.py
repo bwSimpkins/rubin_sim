@@ -1,10 +1,11 @@
 from __future__ import print_function
-import numpy as np
+
+import glob
+import sys
 
 # from rubin_sim.utils import ObservationMetaData
 import healpy as hp
-import sys
-import glob
+import numpy as np
 
 # Modifying createStarDensityMap to use GAIA DR1 catalog
 
@@ -16,15 +17,13 @@ import glob
 if __name__ == "__main__":
     # Hide imports here so documentation builds
     from rubin_sim.catalogs.db import DBObject
-    from rubin_sim.utils import halfSpaceFromRaDec
-    from rubin_sim.utils import levelFromHtmid
-    from rubin_sim.utils import angular_separation, raDec2Hpid
+    from rubin_sim.utils import (angular_separation, halfSpaceFromRaDec,
+                                 levelFromHtmid, raDec2Hpid)
 
     # from rubin_sim.catalogs.generation.db import CatalogDBObject
     # Import the bits needed to get the catalog to work
     # from rubin_sim.catUtils.baseCatalogModels import *
     # from rubin_sim.catUtils.exampleCatalogDefinitions import *
-
     # connect to fatboy
     gaia_db = DBObject(
         database="LSSTCATSIM",

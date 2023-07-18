@@ -5,12 +5,13 @@
 # Humna Awan: humna.awan@rutgers.edu
 #####################################################################################################
 
+import copy
+
+import healpy as hp
+import matplotlib.cm as cm
 import matplotlib.pyplot as plt
 import numpy as np
-import healpy as hp
-import copy
 import rubin_sim.maf.plots as plots
-import matplotlib.cm as cm
 
 __all__ = ["masking_algorithm_generalized"]
 

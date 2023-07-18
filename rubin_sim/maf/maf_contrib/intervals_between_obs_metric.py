@@ -11,6 +11,7 @@
 
 
 from __future__ import print_function
+
 import numpy as np
 from astropy.time import Time
 from rubin_sim.maf.metrics import BaseMetric

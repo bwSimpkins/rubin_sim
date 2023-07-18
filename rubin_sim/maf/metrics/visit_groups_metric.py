@@ -1,12 +1,14 @@
 from builtins import zip
 
+import numpy as np
+
+from .base_metric import BaseMetric
+
 # Example of more complex metric
 # Takes multiple columns of data (although 'night' could be calculable from 'expmjd')
 # Returns variable length array of data
 # Uses multiple reduce functions
 
-import numpy as np
-from .base_metric import BaseMetric
 
 __all__ = ["VisitGroupsMetric", "PairFractionMetric"]
 

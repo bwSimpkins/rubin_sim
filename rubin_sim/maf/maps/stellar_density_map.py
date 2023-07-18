@@ -1,8 +1,10 @@
 import os
-import numpy as np
+
 import healpy as hp
-from rubin_sim.maf.utils import radec2pix
+import numpy as np
 from rubin_sim.data import get_data_dir
+from rubin_sim.maf.utils import radec2pix
+
 from . import BaseMap
 
 __all__ = ["StellarDensityMap"]

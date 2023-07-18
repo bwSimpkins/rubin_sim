@@ -1,11 +1,12 @@
+import glob
+import os
+
 import numpy as np
 import rubin_sim.maf.metrics as metrics
-import os
-from rubin_sim.utils import uniform_sphere, survey_start_mjd
 import rubin_sim.maf.slicers as slicers
-import glob
-from rubin_sim.phot_utils import DustValues
 from rubin_sim.data import get_data_dir
+from rubin_sim.phot_utils import DustValues
+from rubin_sim.utils import survey_start_mjd, uniform_sphere
 
 __all__ = ["TdeLc", "TdePopMetric", "TdePopMetricQuality", "generate_tde_pop_slicer"]
 

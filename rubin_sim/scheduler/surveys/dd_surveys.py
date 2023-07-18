@@ -1,13 +1,13 @@
-import numpy as np
-from rubin_sim.scheduler.surveys import BaseSurvey
 import copy
-import rubin_sim.scheduler.basis_functions as basis_functions
-from rubin_sim.scheduler.utils import empty_observation
-from rubin_sim.scheduler import features
 import logging
 import random
-from rubin_sim.utils import ddf_locations
 
+import numpy as np
+import rubin_sim.scheduler.basis_functions as basis_functions
+from rubin_sim.scheduler import features
+from rubin_sim.scheduler.surveys import BaseSurvey
+from rubin_sim.scheduler.utils import empty_observation
+from rubin_sim.utils import ddf_locations
 
 __all__ = ["DeepDrillingSurvey", "generate_dd_surveys", "dd_bfs"]
 

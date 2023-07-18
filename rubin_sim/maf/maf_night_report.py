@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
 import argparse
+
 import matplotlib
 
 # Set matplotlib backend (to create plots where DISPLAY is not set).
 matplotlib.use("Agg")
 from . import db as db
-from . import metrics as metrics
-from . import slicers as slicers
 from . import metricBundles as metricBundles
+from . import metrics as metrics
 from . import plots as plots
+from . import slicers as slicers
 from . import utils as utils
-
 from .batches import col_map_dict
 
 

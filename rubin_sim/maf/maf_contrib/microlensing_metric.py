@@ -1,11 +1,12 @@
-import numpy as np
-from rubin_sim.maf.utils import m52snr
-import rubin_sim.maf.metrics as metrics
 import os
-from rubin_sim.utils import hpid2_ra_dec, equatorial_from_galactic
+from copy import deepcopy
+
+import numpy as np
+import rubin_sim.maf.metrics as metrics
 import rubin_sim.maf.slicers as slicers
 from rubin_sim.data import get_data_dir
-from copy import deepcopy
+from rubin_sim.maf.utils import m52snr
+from rubin_sim.utils import equatorial_from_galactic, hpid2_ra_dec
 
 __all__ = [
     "generate_microlensing_slicer",

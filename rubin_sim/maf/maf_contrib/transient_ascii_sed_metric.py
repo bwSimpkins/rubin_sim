@@ -12,10 +12,11 @@ import os
 import warnings
 from builtins import zip
 from copy import deepcopy
+
 import numpy as np
 
 try:
-    from sncosmo import read_griddata_ascii, TimeSeriesSource, Model
+    from sncosmo import Model, TimeSeriesSource, read_griddata_ascii
 except ImportError as error:
     pass
 from astropy.cosmology import Planck15 as cosmo

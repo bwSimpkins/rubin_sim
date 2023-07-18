@@ -1,11 +1,12 @@
 # oneDSlicer - slices based on values in one data column in sim_data.
 
-import numpy as np
-from functools import wraps
 import warnings
-from rubin_sim.maf.utils import optimal_bins
-from rubin_sim.maf.stackers import ColInfo
+from functools import wraps
+
+import numpy as np
 from rubin_sim.maf.plots.oned_plotters import OneDBinnedData
+from rubin_sim.maf.stackers import ColInfo
+from rubin_sim.maf.utils import optimal_bins
 
 from .base_slicer import BaseSlicer
 

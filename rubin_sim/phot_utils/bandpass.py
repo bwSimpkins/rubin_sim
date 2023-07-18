@@ -51,13 +51,16 @@ new wavelen/sb arrays (wavelength sampled like self)
 * writeThroughput : utility to write bandpass information to file
 
 """
+import gzip
 import os
 import warnings
+
 import numpy
 import scipy.interpolate as interpolate
-import gzip
+
 from .physical_parameters import PhysicalParameters
-from .sed import Sed  # For ZP_t and M5 calculations. And for 'fast mags' calculation.
+from .sed import \
+    Sed  # For ZP_t and M5 calculations. And for 'fast mags' calculation.
 
 __all__ = ["Bandpass"]
 

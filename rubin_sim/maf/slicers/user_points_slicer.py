@@ -1,7 +1,8 @@
 import numpy as np
-from rubin_sim.maf.plots.spatial_plotters import BaseSkyMap, BaseHistogram
-from .base_spatial_slicer import BaseSpatialSlicer
+from rubin_sim.maf.plots.spatial_plotters import BaseHistogram, BaseSkyMap
 from rubin_sim.utils import _galactic_from_equatorial
+
+from .base_spatial_slicer import BaseSpatialSlicer
 
 __all__ = ["UserPointsSlicer"]
 

@@ -1,8 +1,8 @@
 import numpy as np
-from .base_metric import BaseMetric
 import rubin_sim.maf.utils as mafUtils
 import rubin_sim.utils as utils
 
+from .base_metric import BaseMetric
 
 __all__ = ["DcrPrecisionMetric"]
 

@@ -1,11 +1,11 @@
+import logging
+from copy import copy, deepcopy
+
 import numpy as np
 import pandas as pd
-from copy import deepcopy
-from rubin_sim.scheduler.utils import scheduled_observation
 from rubin_sim.scheduler.surveys import BaseSurvey
-from rubin_sim.utils import _approx_ra_dec2_alt_az, Site
-from copy import copy
-import logging
+from rubin_sim.scheduler.utils import scheduled_observation
+from rubin_sim.utils import Site, _approx_ra_dec2_alt_az
 
 log = logging.getLogger(__name__)
 

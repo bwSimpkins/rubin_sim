@@ -9,14 +9,16 @@ the healpix points across the sky, along with their corresponding RA/Dec/Galacti
 """
 
 import os
-import numpy as np
+
 import healpy as hp
-from astropy.coordinates import SkyCoord
+import numpy as np
 from astropy import units as u
-from .utils import set_default_nside, IntRounded
-from rubin_sim.utils import _hpid2_ra_dec, _angular_separation, angular_separation
-from rubin_sim.utils import Site
+from astropy.coordinates import SkyCoord
 from rubin_sim.data import get_data_dir
+from rubin_sim.utils import (Site, _angular_separation, _hpid2_ra_dec,
+                             angular_separation)
+
+from .utils import IntRounded, set_default_nside
 
 __all__ = [
     "ra_dec_hp_map",

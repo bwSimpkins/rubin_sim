@@ -1,11 +1,11 @@
 import numpy as np
-from .base_metric import BaseMetric
-from rubin_sim.utils import Site
-from astropy.coordinates import get_sun, get_moon, EarthLocation, AltAz
-from astropy import units as u
-from astropy.time import Time
 from astroplan import Observer
+from astropy import units as u
+from astropy.coordinates import AltAz, EarthLocation, get_moon, get_sun
+from astropy.time import Time
+from rubin_sim.utils import Site
 
+from .base_metric import BaseMetric
 
 __all__ = ["HourglassMetric"]
 

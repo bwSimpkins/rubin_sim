@@ -1,7 +1,9 @@
+import warnings
+
 import numpy as np
+
 from .base_stacker import BaseStacker
 from .mo_phase import phase__halley_marcus
-import warnings
 
 __all__ = [
     "BaseMoStacker",

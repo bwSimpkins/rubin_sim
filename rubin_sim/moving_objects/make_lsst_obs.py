@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-import os
 import argparse
 import logging
-import numpy as np
+import os
 
+import numpy as np
 import rubin_sim.moving_objects as mo
 from rubin_sim.maf.batches import col_map_dict
 

@@ -5,13 +5,15 @@ Created on Tue Sep 25 17:11:20 2018
 @author: rstreet
 """
 
+import numpy as np
 import rubin_sim.maf.db as db
+import rubin_sim.maf.metricBundles as metricBundles
 import rubin_sim.maf.metrics as metrics
 import rubin_sim.maf.slicers as slicers
-import rubin_sim.maf.metricBundles as metricBundles
 from rubin_sim.maf.metrics import BaseMetric
-import numpy as np
-from .calculate_lsst_field_visibility_astropy import calculate_lsst_field_visibility
+
+from .calculate_lsst_field_visibility_astropy import \
+    calculate_lsst_field_visibility
 
 __all__ = ["CalcExpectedVisitsMetric"]
 

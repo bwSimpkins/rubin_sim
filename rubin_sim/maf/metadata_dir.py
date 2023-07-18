@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 
-import os
 import argparse
 import glob
-import numpy as np
+import os
 import shutil
+
 import matplotlib
+import numpy as np
 
 matplotlib.use("Agg")
 
 from . import batches as batches
+from .db import ResultsDb, TrackingDb
+from .metric_bundles import MetricBundle, MetricBundleGroup
 from .metrics import CountExplimMetric
 from .slicers import HealpixSlicer, HealpixSubsetSlicer
-from .metric_bundles import MetricBundle, MetricBundleGroup
 from .utils import get_date_version
-from .db import TrackingDb, ResultsDb
 
 
 def metadata_dir():

@@ -1,17 +1,15 @@
 import os
-import numpy as np
-from astropy.io import ascii, fits
-import healpy as hp
-from astropy.coordinates import SkyCoord
+
 import astropy.units as u
-
+import healpy as hp
+import numpy as np
+from astropy.coordinates import SkyCoord
+from astropy.io import ascii, fits
 from rubin_sim.data import get_data_dir
+from rubin_sim.maf.maf_contrib.lss_obs_strategy import \
+    GalaxyCountsMetricExtended
+from rubin_sim.maf.metrics import BaseMetric, ExgalM5, StarDensityMetric
 from rubin_sim.maf.slicers import UserPointsSlicer
-from rubin_sim.maf.metrics import BaseMetric
-from rubin_sim.maf.metrics import ExgalM5
-from rubin_sim.maf.metrics import StarDensityMetric
-from rubin_sim.maf.maf_contrib.lss_obs_strategy import GalaxyCountsMetricExtended
-
 
 __all__ = [
     "generate_known_lv_dwarf_slicer",

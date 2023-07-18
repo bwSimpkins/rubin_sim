@@ -4,15 +4,15 @@
 # Humna Awan: humna.awan@rutgers.edu
 #
 ###############################################################################################################################
+import datetime
+import os
+from collections import OrderedDict
+
+import healpy as hp
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-import healpy as hp
-import datetime
-from collections import OrderedDict
-from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import (
-    power_law_const_a,
-)
+from rubin_sim.maf.maf_contrib.lss_obs_strategy.constants_for_pipeline import \
+    power_law_const_a
 
 __all__ = [
     "get_fsky",

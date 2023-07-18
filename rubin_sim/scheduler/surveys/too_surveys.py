@@ -1,8 +1,8 @@
-import numpy as np
-from rubin_sim.scheduler.surveys import BlobSurvey, BaseSurvey
-import healpy as hp
 import copy
 
+import healpy as hp
+import numpy as np
+from rubin_sim.scheduler.surveys import BaseSurvey, BlobSurvey
 
 __all__ = ["TooMaster", "TooSurvey"]
 
