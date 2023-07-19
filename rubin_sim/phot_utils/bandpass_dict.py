@@ -166,7 +166,6 @@ class BandpassDict:
         bandpass_dir=os.path.join(get_data_dir(), "throughputs", "baseline"),
         bandpass_root="total_",
     ):
-
         bandpass_list = []
 
         for w in bandpass_names:
