@@ -82,14 +82,8 @@ class ModifiedJulianDate:
         ----------
         TAI : `Unknown`
             (optional) a numpy array of MJD' in TAI
-
-        Parameters
-        ----------
         utc : `Unknown`
             (optional) a numpy array of MJDs in utc
-
-        Parameters
-        ----------
         a : `Unknown`
             list of ModifiedJulianDate instantiations with all of their
             properties already set (so the code does not waste time converting from TAI
@@ -134,11 +128,6 @@ class ModifiedJulianDate:
         ----------
         TAI : `Unknown`
             = the International Atomic Time as an MJD
-
-        or
-
-        Parameters
-        ----------
         utc : `Unknown`
             = Universal Coordinate Time as an MJD
         """
