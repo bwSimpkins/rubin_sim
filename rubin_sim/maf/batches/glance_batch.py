@@ -140,7 +140,7 @@ def glanceBatch(
 
     # alt az of long gaps
     sql = "note = 'long'"
-    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits long")
+    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits long", units="#")
     bundle = metric_bundles.MetricBundle(
         metric,
         slicer,
@@ -152,7 +152,7 @@ def glanceBatch(
     bundle_list.append(bundle)
 
     sql = "note like 'blob_long%'"
-    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits blob long")
+    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits blob long", units="#")
     bundle = metric_bundles.MetricBundle(
         metric,
         slicer,
@@ -164,7 +164,7 @@ def glanceBatch(
     bundle_list.append(bundle)
 
     sql = "note like '%neo%' or note like '%near_sun%'"
-    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits twilight near sun")
+    metric = metrics.CountMetric(colmap["mjd"], metric_name="Nvisits twilight near sun", units="#")
     bundle = metric_bundles.MetricBundle(
         metric,
         slicer,
@@ -212,7 +212,7 @@ def glanceBatch(
         lon_col=colmap["ra"],
         lat_lon_deg=colmap["raDecDeg"],
     )
-    metric = metrics.CountMetric(col=colmap["mjd"])
+    metric = metrics.CountMetric(col=colmap["mjd"], metric_name="N visits", units="#")
     plotDict = {"percentile_clip": 95.0}
     for sql in sql_per_and_all_filters:
         bundle = metric_bundles.MetricBundle(
