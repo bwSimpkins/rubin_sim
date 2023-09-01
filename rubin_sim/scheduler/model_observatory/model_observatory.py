@@ -2,6 +2,7 @@ __all__ = ("ModelObservatory", "NoClouds", "NominalSeeing")
 
 import healpy as hp
 import numpy as np
+import warnings
 from astropy.coordinates import EarthLocation
 from astropy.time import Time
 
@@ -247,7 +248,9 @@ class ModelObservatory:
         rubin_sim.scheduler.features.conditions object
         """
 
-        self.conditions.mjd = self.mjd
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            self.conditions.mjd = self.mjd
 
         self.conditions.night = int(self.night)
         # Current time as astropy time
