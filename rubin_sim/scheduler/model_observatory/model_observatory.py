@@ -1,8 +1,9 @@
 __all__ = ("ModelObservatory", "NoClouds", "NominalSeeing")
 
+import warnings
+
 import healpy as hp
 import numpy as np
-import warnings
 from astropy.coordinates import EarthLocation
 from astropy.time import Time
 
