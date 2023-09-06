@@ -27,7 +27,6 @@ import datetime
 import os
 import socket
 import sqlite3
-import warnings
 
 import healpy as hp
 import matplotlib.path as mplPath
@@ -68,10 +67,7 @@ class IntRounded:
 
     def __init__(self, inval, scale=1e5):
         self.initial = inval
-        with warnings.catch_warnings():
-            # ignore invalid value in cast warnings from here
-            warnings.simplefilter("ignore")
-            self.value = np.round(inval * scale).astype(int)
+        self.value = np.round(inval * scale).astype(int)
         self.scale = scale
 
     def __eq__(self, other):
