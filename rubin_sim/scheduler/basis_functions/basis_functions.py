@@ -874,7 +874,7 @@ class M5DiffBasisFunction(BaseBasisFunction):
             )
 
         # No way to get the sign on this right the first time.
-        result = self.dark_map - conditions.m5_depth[self.filtername]
+        result = conditions.m5_depth[self.filtername] - self.dark_map 
         return result
 
 
