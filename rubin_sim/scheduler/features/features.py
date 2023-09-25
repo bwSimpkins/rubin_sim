@@ -19,6 +19,7 @@ __all__ = (
     "SurveyInNight",
     "NoteInNight",
     "NoteLastObserved",
+    "AirmassBinsFeature",
 )
 
 import healpy as hp
@@ -147,9 +148,9 @@ class NObsCount(BaseSurveyFeature):
         elif (
             (self.filtername is None)
             and (self.tag is not None)
-            and
+
             # Track all observations on a specified filter on a specified tag
-            (observation["filter"][0] in self.filtername)
+            and (observation["filter"][0] in self.filtername)
             and (observation["tag"][0] in self.tag)
         ):
             self.feature += 1
@@ -212,9 +213,9 @@ class NObsCountSeason(BaseSurveyFeature):
             elif (
                 (self.filtername is None)
                 and (self.tag is not None)
-                and
+
                 # Track all observations on a specified filter on a specified tag
-                (observation["filter"][0] in self.filtername)
+                and (observation["filter"][0] in self.filtername)
                 and (observation["tag"][0] in self.tag)
             ):
                 self.feature += 1
@@ -759,3 +760,26 @@ class RotatorAngle(BaseSurveyFeature):
         if observation["filter"][0] == self.filtername:
             # I think this is how to broadcast things properly.
             self.feature[indx, :] += np.histogram(observation.rotSkyPos, bins=self.bins)[0]
+
+
+class AirmassBinsFeature(BaseSurveyFeature):
+    """Track how many times we have observed at a certain airmass bin. Resets on new night.
+    """
+
+    def __init__(self, bin_edges, sigma_am=0.2):
+        self.bin_edges = bin_edges
+        self.night = -np.nan
+        self.sigma_am_sq = sigma_am**2
+        self.x = (bin_edges[0:-1] + bin_edges[1:])/2.
+        self.feature = np.zeros(np.size(bin_edges)-1, dtype=float)
+
+    def add_observation(self, observation, indx=None):
+        # if we are on a new night, reset the feature values
+        if observation["night"] != self.night:
+            self.feature = np.zeros(np.size(self.bin_edges)-1, dtype=float)
+            self.night = observation["night"]
+
+        # Check if observation is at an airmass of interest
+        if (observation["airmass"].max() < self.bin_edges.max()) & (observation["airmass"].min() > self.bin_edges.min()):
+            val = np.exp(-0.5*(self.x - observation["airmass"])**2/self.sigma_am_sq)
+            self.feature += val
