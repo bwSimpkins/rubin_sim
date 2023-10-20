@@ -8,9 +8,10 @@ import numpy as np
 
 import rubin_sim.scheduler.basis_functions as basis_functions
 from rubin_sim.scheduler import features
+from rubin_sim.scheduler.basis_functions.mask_basis_funcs import HealpixLimitedBasisFunction
 from rubin_sim.scheduler.surveys import BaseSurvey
 from rubin_sim.scheduler.utils import empty_observation
-from rubin_sim.utils import ddf_locations
+from rubin_sim.utils import ddf_locations, ra_dec2_hpid
 
 log = logging.getLogger(__name__)
 
@@ -60,9 +61,20 @@ class DeepDrillingSurvey(BaseSurvey):
         seed=42,
         detailers=None,
     ):
+        # Wrap all basis functions so they use scalars at the DDF pointing
+        single_hpix_bfs = []
+        for basis_function in basis_functions:
+            if isinstance(basis_function, HealpixLimitedBasisFunction):
+                single_hpix_bfs.append(basis_function)
+            else:
+                nside = basis_function.nside
+                if nside is not None:
+                    hpid = ra_dec2_hpid(nside, RA, dec)
+                    single_hpix_bfs.append(HealpixLimitedBasisFunction(basis_function, hpid))
+
         super(DeepDrillingSurvey, self).__init__(
             nside=nside,
-            basis_functions=basis_functions,
+            basis_functions=single_hpix_bfs,
             detailers=detailers,
             ignore_obs=ignore_obs,
         )

@@ -9,6 +9,7 @@ __all__ = (
     "MaskAzimuthBasisFunction",
     "SolarElongationMaskBasisFunction",
     "AreaCheckMaskBasisFunction",
+    "HealpixLimitedBasisFunction",
 )
 
 import healpy as hp
@@ -100,6 +101,66 @@ class AreaCheckMaskBasisFunction(BaseBasisFunction):
         for bf in self.bf_list:
             result *= bf(conditions)
         return result
+
+
+class HealpixLimitedBasisFunction(BaseBasisFunction):
+    """
+    A basis function that is limited to a set of Healpix pixels.
+
+    Parameters
+    ----------
+    base_bf : BaseBasisFunction
+        The base basis function to use.
+    hpid : `int`
+        The Healpix pixel ID to limit the basis function to.
+
+    Methods
+    -------
+    check_feasibility(conditions)
+        Check if the basis function is feasible for the given conditions.
+    _calc_value(conditions, all_sky=False, **kwargs)
+        Calculate the value of the basis function for the given conditions.
+    """
+
+    def __init__(self, base_bf, hpid):
+        super().__init__(nside=base_bf.nside)
+        self.base_bf = base_bf
+        self.hpid = hpid
+
+    def check_feasibility(self, conditions):
+        """
+        Check the feasibility of the current set of conditions.
+
+        Parameters
+        ----------
+        conditions : `rubin_sim.scheduler.features.Conditions`
+            The conditions for which to test feasibility.
+
+        Returns
+        -------
+        feasibility : `bool`
+            True if the current set of conditions is feasible, False otherwise.
+        """
+
+        # Note that if self.base_bf's check_feasibility is False,
+        # then self(conditions) will return -np.inf without needing
+        # to do the full calculation.
+        feasibility = np.nanmax(self(conditions)) > -np.inf
+        return feasibility
+
+    def _calc_value(self, conditions, all_sky=False, **kwargs):
+        all_sky_value = self.base_bf(conditions, **kwargs)
+
+        if all_sky:
+            return all_sky_value
+
+        if np.isscalar(all_sky_value):
+            value = all_sky_value
+        else:
+            assert len(all_sky_value) == hp.nside2npix(self.nside)
+            value = all_sky_value[self.hpid]
+
+        return value
 
 
 class SolarElongationMaskBasisFunction(BaseBasisFunction):
