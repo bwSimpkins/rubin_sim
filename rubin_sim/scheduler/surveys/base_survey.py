@@ -225,7 +225,10 @@ class BaseSurvey:
             pix_area = None
 
         if np.isscalar(reward):
-            unmasked_area = pix_area * hp.nside2npix(self.nside)
+            if np.isnan(reward) or reward == -np.inf:
+                unmasked_area = 0
+            else:
+                unmasked_area = pix_area * hp.nside2npix(self.nside)
         else:
             unmasked_area = pix_area * np.count_nonzero(reward > -np.inf)
 
@@ -235,6 +238,9 @@ class BaseSurvey:
             scalar_reward = -np.inf
         else:
             scalar_reward = np.nanmax(reward)
+
+        if np.isnan(scalar_reward):
+            scalar_reward = -np.inf
 
         return scalar_reward, unmasked_area
 
