@@ -15,7 +15,7 @@ import healpy as hp
 import matplotlib.pylab as plt
 import numpy as np
 
-from rubin_sim.scheduler.basis_functions import BaseBasisFunction
+from rubin_sim.scheduler.basis_functions import BaseBasisFunction, HealpixLimitedBasisFunctionMixin
 from rubin_sim.scheduler.utils import HpInLsstFov, IntRounded
 from rubin_sim.utils import Site, _angular_separation, _hpid2_ra_dec
 
@@ -257,6 +257,10 @@ class ZenithShadowMaskBasisFunction(BaseBasisFunction):
         return result
 
 
+class ZenithShadowMaskAtHpixBasisFunction(HealpixLimitedBasisFunctionMixin, ZenithShadowMaskBasisFunction):
+    pass
+
+
 class MoonAvoidanceBasisFunction(BaseBasisFunction):
     """Avoid looking too close to the moon.
 
@@ -285,6 +289,10 @@ class MoonAvoidanceBasisFunction(BaseBasisFunction):
         result[IntRounded(angular_distance) < self.moon_distance] = np.nan
 
         return result
+
+
+class MoonAvoidanceAtHpixBasisFunction(HealpixLimitedBasisFunctionMixin, MoonAvoidanceBasisFunction):
+    pass
 
 
 class BulkCloudBasisFunction(BaseBasisFunction):

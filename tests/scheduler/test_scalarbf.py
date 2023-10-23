@@ -6,8 +6,8 @@ from rubin_sim.scheduler.utils import set_default_nside
 from rubin_sim.scheduler.basis_functions import HealpixLimitedBasisFunctionMixin
 from rubin_sim.scheduler.basis_functions import BaseBasisFunction
 
-class SimpleArrayBasisFunction(BaseBasisFunction):
 
+class SimpleArrayBasisFunction(BaseBasisFunction):
     def __init__(self, value, *args, **kwargs):
         self.assigned_value = value
         super().__init__(*args, **kwargs)
@@ -16,11 +16,12 @@ class SimpleArrayBasisFunction(BaseBasisFunction):
         self.value = self.assigned_value
         return self.value
 
+
 class SimpleArrayBasisFunctionAtHpix(HealpixLimitedBasisFunctionMixin, SimpleArrayBasisFunction):
     pass
 
-class TestHealpixLimitedBasisFunctionMixin(unittest.TestCase):
 
+class TestHealpixLimitedBasisFunctionMixin(unittest.TestCase):
     def setUp(self):
         self.hpid = 2111
         random_seed = 6563
@@ -30,7 +31,6 @@ class TestHealpixLimitedBasisFunctionMixin(unittest.TestCase):
         self.all_values = self.rng.random(self.npix)
         self.value = self.all_values[self.hpid]
         self.conditions = Conditions(nside=self.nside, mjd=60200.2)
-
 
     def test_array_data(self):
         basis_function = SimpleArrayBasisFunction(self.all_values)
@@ -54,5 +54,6 @@ class TestHealpixLimitedBasisFunctionMixin(unittest.TestCase):
 
         pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

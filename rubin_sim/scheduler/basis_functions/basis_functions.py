@@ -947,6 +947,10 @@ class M5DiffBasisFunction(BaseBasisFunction):
         return result
 
 
+class M5DiffAtHpixBasisFunction(HealpixLimitedBasisFunctionMixin, M5DiffBasisFunction):
+    pass
+
+
 class StrictFilterBasisFunction(BaseBasisFunction):
     """Remove the bonus for staying in the same filter if certain conditions are met.
 
@@ -1312,6 +1316,12 @@ class SkybrightnessLimitBasisFunction(BaseBasisFunction):
         result[good] = 1.0
 
         return result
+
+
+class SkybrightnessLimitAtHpixBasisFunction(
+    HealpixLimitedBasisFunctionMixin, SkybrightnessLimitBasisFunction
+):
+    pass
 
 
 class CablewrapUnwrapBasisFunction(BaseBasisFunction):
