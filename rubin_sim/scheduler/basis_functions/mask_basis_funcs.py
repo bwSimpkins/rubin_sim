@@ -142,10 +142,15 @@ class HealpixLimitedBasisFunction(BaseBasisFunction):
             True if the current set of conditions is feasible, False otherwise.
         """
 
-        # Note that if self.base_bf's check_feasibility is False,
-        # then self(conditions) will return -np.inf without needing
-        # to do the full calculation.
-        feasibility = np.nanmax(self(conditions)) > -np.inf
+        if self.base_bf.check_feasibility(conditions):
+            if self.recalc or (self.update_on_mjd and conditions.mjd != self.mjd_last):
+                value = self._calc_value(conditions)
+            else:
+                value = self.value
+
+            feasibility = np.nanmax(value) > -np.inf
+        else:
+            feasibility = False
         return feasibility
 
     def _calc_value(self, conditions, all_sky=False, **kwargs):
