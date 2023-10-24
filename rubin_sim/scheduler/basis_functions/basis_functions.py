@@ -42,6 +42,8 @@ __all__ = (
     "BalanceVisits",
     "RewardNObsSequence",
     "AirmassDistBasisFunction",
+    "AzimuthDistBasisFunction",
+    "AltitudeDistBasisFunction"
     "FilterDistBasisFunction",
 )
 
@@ -2060,7 +2062,7 @@ class AirmassDistBasisFunction(BaseBasisFunction):
             # Some reasonable default of what airmass range one wants covered
             # and at what resolution the bins should be
             # XXX--just picking some reasonable looking starting values
-            self.airmass_bin_edges = np.arange(0.8, 2.2, 0.1)
+            self.airmass_bin_edges = np.array([0.9,1.5,1.75,1.9,2.0,2.1,2.2,2.8])
         else:
             self.airmass_bin_edges = airmass_bin_edges
 
@@ -2075,6 +2077,62 @@ class AirmassDistBasisFunction(BaseBasisFunction):
                             & (conditions.airmass < self.airmass_bin_edges.max()))
         indx = np.searchsorted(self.airmass_bin_edges, conditions.airmass[in_range]) - 1
         result[in_range] = -self.survey_features["n_airmass"].feature[indx]
+        # so we're making it negative here. One could leave it positive, then make the weight on it negative.
+        # I dunno which convention makes better sense (or which convention I've been following).
+        return result
+
+
+class AzimuthDistBasisFunction(BaseBasisFunction):
+    """Reward azimuth bins that have been observed less than others.
+    """
+
+    def __init__(self, nside=None, azimuth_bin_edges=None):
+        super().__init__(nside=nside)
+        if azimuth_bin_edges is None:
+            # Some reasonable default of what airmass range one wants covered
+            # and at what resolution the bins should be
+            # XXX--just picking some reasonable looking starting values
+            self.azimuth_bin_edges = np.deg2rad(np.array([330,30,150,210,330]))
+        else:
+            self.azimuth_bin_edges = azimuth_bin_edges
+        self.survey_features["n_azimuth"] = features.AzimuthBinsFeature(bin_edges=self.azimuth_bin_edges)
+        self.result = np.zeros(hp.nside2npix(nside))
+
+    def _calc_value(self, conditions, indx=None):
+        result = self.result.copy()
+        # convert the airmass map to the number of times that bin has been observed
+        in_range = np.where((conditions.az >= self.azimuth_bin_edges.min())
+                            & (conditions.az < self.azimuth_bin_edges.max()))
+        indx = np.searchsorted(self.azimuth_bin_edges, conditions.az[in_range]) - 1
+        result[in_range] = -self.survey_features["n_azimuth"].feature[indx]
+        # so we're making it negative here. One could leave it positive, then make the weight on it negative.
+        # I dunno which convention makes better sense (or which convention I've been following).
+        return result
+
+
+class AltitudeDistBasisFunction(BaseBasisFunction):
+    """Reward azimuth bins that have been observed less than others.
+    """
+
+    def __init__(self, nside=None, altitude_bin_edges=None):
+        super().__init__(nside=nside)
+        if altitude_bin_edges is None:
+            # Some reasonable default of what airmass range one wants covered
+            # and at what resolution the bins should be
+            # XXX--just picking some reasonable looking starting values
+            self.altitude_bin_edges = np.linspace(20, 90, 8)
+        else:
+            self.altitude_bin_edges = altitude_bin_edges
+        self.survey_features["n_altitude"] = features.AltitudeBinsFeature(bin_edges=self.altitude_bin_edges)
+        self.result = np.zeros(hp.nside2npix(nside))
+
+    def _calc_value(self, conditions, indx=None):
+        result = self.result.copy()
+        # convert the airmass map to the number of times that bin has been observed
+        in_range = np.where((conditions.az >= self.altitude_bin_edges.min())
+                            & (conditions.az < self.altitude_bin_edges.max()))
+        indx = np.searchsorted(self.altitude_bin_edges, conditions.az[in_range]) - 1
+        result[in_range] = -self.survey_features["n_altitude"].feature[indx]
         # so we're making it negative here. One could leave it positive, then make the weight on it negative.
         # I dunno which convention makes better sense (or which convention I've been following).
         return result

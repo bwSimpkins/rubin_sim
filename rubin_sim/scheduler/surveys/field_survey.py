@@ -27,6 +27,7 @@ class FieldSurvey(DeepDrillingSurvey):
         flush_pad=30.0,
         seed=42,
         detailers=None,
+        basis_weights=None,
     ):
         super().__init__(
             basis_functions=basis_functions,
@@ -47,7 +48,10 @@ class FieldSurvey(DeepDrillingSurvey):
             seed=seed,
             detailers=detailers,
         )
-        self.basis_weights = np.ones(len(basis_functions)) / len(basis_functions)
+        if basis_weights is not None:
+            self.basis_weights = basis_weights
+        else:
+            self.basis_weights = np.ones(len(basis_functions)) / len(basis_functions)
         self.ra_deg, self.dec_deg = RA, dec
 
     def calc_reward_function(self, conditions):
