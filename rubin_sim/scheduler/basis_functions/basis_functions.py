@@ -59,7 +59,7 @@ from rubin_sim.utils import _hpid2_ra_dec, m5_flat_sed
 class BaseBasisFunction:
     """Class that takes features and computes a reward function when called."""
 
-    def __init__(self, nside=None, filtername=None, **kwargs):
+    def __init__(self, nside=None, filtername=None, roi_hpid=None, **kwargs):
         # Set if basis function needs to be recalculated if there is a new
         # observation
         self.update_on_newobs = True
@@ -83,6 +83,17 @@ class BaseBasisFunction:
             self.nside = nside
 
         self.filtername = filtername
+
+        # Create the region of interest (roi) basis function
+        # If no roi_hpid is set, then the roi basis function is just
+        # the full basis function.
+        self.roi_hpid = roi_hpid
+        if self.roi_hpid is None:
+            self.roi = self
+        else:
+            self.roi = HealpixLimitedBasisFunction(
+                self.roi_hpid, self, nside=self.nside, filtername=self.filtername, roi_hpid=None
+            )
 
     def add_observations_array(self, observations_array, observations_hpid):
         """Like add_observation, but for loading a whole array of observations at a time
@@ -175,7 +186,7 @@ class BaseBasisFunction:
         return label
 
 
-class HealpixLimitedBasisFunctionMixin(BaseBasisFunction):
+class HealpixLimitedBasisFunctionMixin:
     """A mixin to limit a basis function to a set of Healpix pixels."""
 
     def __init__(self, hpid, *args, **kwargs):
@@ -220,6 +231,24 @@ class HealpixLimitedBasisFunctionMixin(BaseBasisFunction):
             value = all_sky_value[self.hpid]
 
         return value
+
+
+# A utility class that we can combine with mixins so that we can make a
+# "mixed in" version without explicitly defining new classes each time.
+class WrappedBasisFunction(BaseBasisFunction):
+    def __init__(self, base_bf, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.base_bf = base_bf
+
+    def check_feasibility(self, *args, **kwargs):
+        return self.base_bf.check_feasibility(*args, **kwargs)
+
+    def _calc_value(self, *args, **kwargs):
+        return self.base_bf._calc_value(*args, **kwargs)
+
+
+class HealpixLimitedBasisFunction(HealpixLimitedBasisFunctionMixin, WrappedBasisFunction):
+    pass
 
 
 class ConstantBasisFunction(BaseBasisFunction):
