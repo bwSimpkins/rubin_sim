@@ -1,9 +1,9 @@
 __all__ = ("DeepDrillingSurvey", "generate_dd_surveys", "dd_bfs")
 
 import copy
-from functools import cached_property
 import logging
 import random
+from functools import cached_property
 
 import numpy as np
 
