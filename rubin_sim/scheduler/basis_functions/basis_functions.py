@@ -43,7 +43,7 @@ __all__ = (
     "RewardNObsSequence",
     "AirmassDistBasisFunction",
     "AzimuthDistBasisFunction",
-    "AltitudeDistBasisFunction"
+    "AltitudeDistBasisFunction",
     "FilterDistBasisFunction",
 )
 
