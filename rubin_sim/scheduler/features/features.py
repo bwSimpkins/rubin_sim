@@ -765,8 +765,8 @@ class RotatorAngle(BaseSurveyFeature):
 
 
 class AirmassBinsFeature(BaseSurveyFeature):
-    """Track how many times we have observed at a certain airmass bin. Resets on new night.
-    """
+    """Track how many times we have observed at a certain airmass bin. Resets
+    on new night."""
 
     def __init__(self, bin_edges, sigma_am=0.2):
         self.bin_edges = bin_edges
@@ -784,50 +784,4 @@ class AirmassBinsFeature(BaseSurveyFeature):
         # Check if observation is at an airmass of interest
         if (observation["airmass"].max() < self.bin_edges.max()) & (observation["airmass"].min() > self.bin_edges.min()):
             val = np.exp(-0.5*(self.x - observation["airmass"])**2/self.sigma_am_sq)
-            self.feature += val
-
-
-class AzimuthBinsFeature(BaseSurveyFeature):
-    """Track how many times we have observed at a certain azimuth bin. Resets on new night.
-    """
-
-    def __init__(self, bin_edges, sigma_am=0.2):
-        self.bin_edges = bin_edges
-        self.night = -np.nan
-        self.sigma_am_sq = sigma_am**2
-        self.x = (bin_edges[0:-1] + bin_edges[1:])/2.
-        self.feature = np.zeros(np.size(bin_edges)-1, dtype=float)
-
-    def add_observation(self, observation, indx=None):
-        # if we are on a new night, reset the feature values
-        if observation["night"] != self.night:
-            self.feature = np.zeros(np.size(self.bin_edges)-1, dtype=float)
-            self.night = observation["night"]
-
-        # Check if observation is at an airmass bin of interest
-        if (observation["az"].max() < self.bin_edges.max()) & (observation["az"].min() > self.bin_edges.min()):
-            val = np.exp(-0.5*(self.x - observation["az"])**2/self.sigma_am_sq)
-            self.feature += val
-
-
-class AltitudeBinsFeature(BaseSurveyFeature):
-    """Track how many times we have observed at a certain azimuth bin. Resets on new night.
-    """
-
-    def __init__(self, bin_edges, sigma_am=0.2):
-        self.bin_edges = bin_edges
-        self.night = -np.nan
-        self.sigma_am_sq = sigma_am**2
-        self.x = (bin_edges[0:-1] + bin_edges[1:])/2.
-        self.feature = np.zeros(np.size(bin_edges)-1, dtype=float)
-
-    def add_observation(self, observation, indx=None):
-        # if we are on a new night, reset the feature values
-        if observation["night"] != self.night:
-            self.feature = np.zeros(np.size(self.bin_edges)-1, dtype=float)
-            self.night = observation["night"]
-
-        # Check if observation is at an airmass bin of interest
-        if (observation["alt"].max() < self.bin_edges.max()) & (observation["alt"].min() > self.bin_edges.min()):
-            val = np.exp(-0.5*(self.x - observation["alt"])**2/self.sigma_am_sq)
             self.feature += val
