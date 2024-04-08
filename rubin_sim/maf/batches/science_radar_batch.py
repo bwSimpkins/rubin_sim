@@ -1339,7 +1339,7 @@ def science_radar_batch(
     # Kilonovae metric
     displayDict["group"] = "Variables/Transients"
     displayDict["subgroup"] = "KNe"
-    n_events = 500000
+    n_events = 5000
     caption = f"KNe metric, injecting {n_events} lightcurves over the entire sky, GW170817-like only."
     caption += " Ignoring DDF observations."
     displayDict["caption"] = caption
