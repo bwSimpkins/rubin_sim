@@ -125,7 +125,7 @@ class TestBatches(unittest.TestCase):
     )
     def test_glance(self):
         ack = batches.glanceBatch()
-        database = os.path.join(get_data_dir(), "tests", "example_dbv1.7_0yrs.db")
+        database = os.path.join(get_data_dir(), "tests", "example_v3.4_0yrs.db")
         results_db = db.ResultsDb(out_dir=self.out_dir)
         bgroup = metric_bundles.MetricBundleGroup(ack, database, out_dir=self.out_dir, results_db=results_db)
         bgroup.run_all()

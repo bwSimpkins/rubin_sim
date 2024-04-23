@@ -80,7 +80,7 @@ def metadata_dir():
         # Find the 'wfd' footprint
         m = CountExplimMetric(col="observationStartMJD")
         allsky_slicer = HealpixSlicer(nside=args.nside)
-        constraint = 'note not like "%DD%"'
+        constraint = 'scheduler_note not like "%DD%"'
         bundle = MetricBundle(m, allsky_slicer, constraint, run_name=sim_name)
         g = MetricBundleGroup({f"{sim_name} footprint": bundle}, filename, out_dir=out_dir)
         g.run_all()
