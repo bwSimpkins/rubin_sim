@@ -14,12 +14,17 @@ from rubin_scheduler.scheduler.model_observatory.kinem_model import KinemModel
 from rubin_scheduler.scheduler.schedulers.core_scheduler import CoreScheduler
 from rubin_scheduler.scheduler.utils import SchemaConverter
 from rubin_scheduler.sim_archive import drive_sim
+from rubin_scheduler.site_models import Almanac
 
 from rubin_sim.data import get_baseline
 
 DEFAULT_ARCHIVE_URI = "file:///sdf/data/rubin/user/neilsen/data/test_sim_archive/"
 
-return_zero = np.zeros((1,)).item
+
+def return_zero(*args):
+    # Rubin style guide forbids lambda functions for any purpose,
+    # so do this instead.
+    return 0
 
 
 class ScatteredKinemModel(KinemModel):
@@ -36,7 +41,8 @@ class ScatteredKinemModel(KinemModel):
 
     def slew_times(self, *args, **kwargs):
         model_time = super().slew_times(*args, **kwargs)
-        scattered_time = model_time + self.slew_scatter_func()
+        scattered_time = model_time * self.slew_scatter_func()
+        scattered_time[scattered_time < 0] = 0.0
         return scattered_time
 
 
@@ -106,6 +112,19 @@ def _create_scheduler_io(day_obs_mjd, scheduler=None, opsim_db=None):
     return scheduler_io
 
 
+class PositiveScatter:
+    def __init__(self, seed, scale, loc=0.0):
+        self.rng = np.random.default_rng(seed)
+        self.loc = loc
+        self.scale = scale
+
+    def __call__(self):
+        shift = self.rng.normal(self.loc, self.scale)
+        if shift < 0:
+            shift = 0.0
+        return shift
+
+
 def run_prenights(day_obs_mjd, archive_uri, scheduler_file=None, opsim_db=None):
     exec_time = Time.now().iso
     mjd_start = day_obs_mjd + 0.5
@@ -125,15 +144,37 @@ def run_prenights(day_obs_mjd, archive_uri, scheduler_file=None, opsim_db=None):
     visit_scatter_loc = 0.0
     visit_scatter_scale = 10.0
     for visit_scatter_seed in range(101, 106):
-        visit_scatter_func = partial(
-            np.random.default_rng(visit_scatter_seed).normal, visit_scatter_loc, visit_scatter_scale
-        )
+        visit_scatter_func = PositiveScatter(visit_scatter_seed, visit_scatter_scale, visit_scatter_loc)
         run_sim(
             mjd_start,
             label=f"Scattered visit time ({visit_scatter_loc, visit_scatter_scale, visit_scatter_seed}),"
             + f" Nominal start and slew, ideal conditions, run at {exec_time}",
             tags=["ideal", "scattered_visit_time"],
             visit_scatter_func=visit_scatter_func,
+        )
+
+    # Run a few different scatters of slew time
+    slew_scatter_loc = 1.0
+    slew_scatter_scale = 0.1
+    for slew_scatter_seed in range(201, 206):
+        slew_scatter_func = PositiveScatter(slew_scatter_seed, slew_scatter_scale, slew_scatter_loc)
+        run_sim(
+            mjd_start,
+            label=f"Scattered slew time ({slew_scatter_loc, slew_scatter_scale, slew_scatter_seed}),"
+            + f" Nominal start and visit overhead, ideal conditions, run at {exec_time}",
+            tags=["ideal", "scattered_slew_time"],
+            slew_scatter_func=slew_scatter_func,
+        )
+
+    # Delayed start
+    sun_n12_setting = Almanac(mjd_start=mjd_start).get_sunset_info()["sun_n12_setting"]
+    for minutes_delay in (1, 10, 60, 240):
+        delayed_mjd_start = sun_n12_setting + minutes_delay / (24.0 * 60)
+        run_sim(
+            delayed_mjd_start,
+            label=f"Start time delayed by {minutes_delay} minutes,"
+            + f" Nominal slew and visit overhead, ideal conditions, run at {exec_time}",
+            tags=["ideal", f"delay_{minutes_delay}"],
         )
 
 
