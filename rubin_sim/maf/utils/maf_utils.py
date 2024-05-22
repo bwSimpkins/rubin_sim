@@ -20,8 +20,7 @@ from rubin_sim.phot_utils import Bandpass, PhotometricParameters
 
 
 def load_inst_zeropoints():
-    """Load up and return instrumental zeropoints and atmospheric extinctions
-    """
+    """Load up and return instrumental zeropoints and atmospheric extinctions"""
     zp_inst = {}
     datadir = get_data_dir()
     for filtername in "ugrizy":
